@@ -1,0 +1,55 @@
+services:
+  database:
+    image: ${PROJECT_NAME}-database
+    container_name: ${PROJECT_NAME}-database
+    build:
+      context: .
+      dockerfile: docker/database/Dockerfile
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    networks:
+      - backend-network
+
+  backend:
+    image: ${PROJECT_NAME}-backend
+    container_name: ${PROJECT_NAME}-backend
+    build:
+      context: .
+      dockerfile: docker/backend/Dockerfile
+    ports:
+      - "8080:8080"
+    depends_on:
+      - database
+    env_file:
+      - .env
+    networks:
+      - backend-network
+
+  pgadmin:
+    image: ${PROJECT_NAME}-pgadmin
+    container_name: ${PROJECT_NAME}-pgadmin
+    build:
+      context: .
+      dockerfile: docker/pgadmin/Dockerfile
+    ports:
+      - "8888:80"
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_USER}
+      PGADMIN_DEFAULT_PASSWORD: ${POSTGRES_PASSWORD}
+    volumes:
+      - pgadmin-data:/var/lib/pgadmin
+    networks:
+      - backend-network
+
+networks:
+  backend-network:
+
+volumes:
+  db-data:
+  pgadmin-data:
