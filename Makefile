@@ -13,11 +13,11 @@ build:
 	$(COMPOSE) build
 
 # Start the container
-up:
+run:
 	$(COMPOSE) up -d
 
 # Stop the containers
-down:
+stop:
 	$(COMPOSE) stop
 
 app-logs:
