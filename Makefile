@@ -3,7 +3,7 @@ ifneq (,$(wildcard ./.env))
     export
 endif
 COMPOSE=docker compose
-CONTAINER_BE = $(PROJECT_NAME)-backend
+CONTAINER_BE = $(PROJECT_NAME)-app
 CONTAINER_DB = $(PROJECT_NAME)-database
 CONTAINER_NETWORK = $(PROJECT_NAME)-network
 
