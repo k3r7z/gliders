@@ -3,7 +3,7 @@ ifneq (,$(wildcard ./.env))
     export
 endif
 COMPOSE=docker compose
-CONTAINER_BE = $(PROJECT_NAME)-app
+CONTAINER_APP = $(PROJECT_NAME)-app
 CONTAINER_DB = $(PROJECT_NAME)-database
 CONTAINER_NETWORK = $(PROJECT_NAME)-network
 
@@ -20,13 +20,13 @@ up:
 down:
 	$(COMPOSE) stop
 
-be-logs:
+app-logs:
 	$(COMPOSE) logs -f
 
 restart:
 	$(COMPOSE) restart $(CONTAINER_BE)
 
-be-shell:
+app-shell:
 	$(COMPOSE) exec $(CONTAINER_BE) bash
 
 db-shell:
