@@ -1,0 +1,44 @@
+<!DOCTYPE HTML>
+<html>
+
+<div th:fragment="navbar">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm">
+        <div class="container">
+            <a class="navbar-brand" th:href="@{/}">
+                <img th:src="@{/image/logo.png}" alt="Logo" width="40" height="40">
+                Club de Planeadores Esperanza
+            </a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/fleet}">Flota</a>
+                    </li>
+                    <li class="nav-item" sec:authorize="hasRole('ADMIN')">
+                        <a class="nav-link text-warning" th:href="@{/admin}">Admin Panel</a>
+                    </li>
+                </ul>
+
+                <div class="d-flex align-items-center">
+                    <div sec:authorize="isAnonymous()">
+                        <a th:href="@{/login}" class="btn btn-outline-light btn-sm">Ingresar</a>
+                    </div>
+
+                    <div sec:authorize="isAuthenticated()" class="dropdown text-light">
+                        <span class="me-3">Welcome, <strong sec:authentication="name">User</strong></span>
+                        <form th:action="@{/logout}" method="post" class="d-inline">
+                            <button type="submit" class="btn btn-danger btn-sm">Salir</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+</div>
+
+
+</html>
