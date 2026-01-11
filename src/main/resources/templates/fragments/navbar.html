@@ -1,12 +1,12 @@
 <!DOCTYPE HTML>
-<html>
+<html xmlns:sec="http://www.w3.org/1999/xhtml">
+
 
 <div th:fragment="navbar">
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-transparent fixed-top">
         <div class="container">
-            <a class="navbar-brand" th:href="@{/}">
+            <a class="navbar-brand d-flex align-items-center" th:href="@{/}">
                 <img th:src="@{/image/logo.png}" alt="Logo" width="40" height="40">
-                Club de Planeadores Esperanza
             </a>
 
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
@@ -14,25 +14,33 @@
             </button>
 
             <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav me-auto">
+                <ul class="navbar-nav me-auto d-flex align-items-center justify-content-center">
                     <li class="nav-item">
-                        <a class="nav-link" th:href="@{/fleet}">Flota</a>
+                        <a class="nav-link" th:href="@{/news}">NOTICIAS</a>
                     </li>
-                    <li class="nav-item" sec:authorize="hasRole('ADMIN')">
-                        <a class="nav-link text-warning" th:href="@{/admin}">Admin Panel</a>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/fleet}">FLOTA</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/events}">EVENTOS</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/flights}">BAUTISMOS</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/history}">HISTORIA</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/gallery}">GALERÍA</a>
                     </li>
                 </ul>
 
                 <div class="d-flex align-items-center">
                     <div sec:authorize="isAnonymous()">
-                        <a th:href="@{/login}" class="btn btn-outline-light btn-sm">Ingresar</a>
+                        <a th:href="@{/login}" class="btn btn-outline-light btn-sm me-2">Registrarse</a>
                     </div>
-
-                    <div sec:authorize="isAuthenticated()" class="dropdown text-light">
-                        <span class="me-3">Welcome, <strong sec:authentication="name">User</strong></span>
-                        <form th:action="@{/logout}" method="post" class="d-inline">
-                            <button type="submit" class="btn btn-danger btn-sm">Salir</button>
-                        </form>
+                    <div sec:authorize="isAnonymous()">
+                        <a th:href="@{/sign-up}" class="btn btn-outline-light btn-sm">Ingresar</a>
                     </div>
                 </div>
             </div>
