@@ -18,7 +18,15 @@ public class SecurityConfig {
                         // 1. Allow internal forwards to Thymeleaf templates
                         .dispatcherTypeMatchers(DispatcherType.FORWARD, DispatcherType.ERROR).permitAll()
                         // 2. Publicly accessible paths
-                        .requestMatchers("/", "/index", "/login", "/css/**", "/js/**").permitAll()
+                        .requestMatchers(
+                                "/",
+                                "/index",
+                                "/login",
+                                "/css/**",
+                                "/js/**",
+                                "/image/**",
+                                "/webjars/**"
+                        ).permitAll()
                         // 3. Everything else requires login
                         .anyRequest().authenticated()
                 )
