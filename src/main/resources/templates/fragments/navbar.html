@@ -3,45 +3,65 @@
 
 
 <div th:fragment="navbar">
-    <nav class="navbar navbar-expand-lg navbar-dark bg-transparent fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-transparent">
         <div class="container">
-            <a class="navbar-brand d-flex align-items-center" th:href="@{/}">
-                <img th:src="@{/image/logo.png}" alt="Logo" width="40" height="40">
-            </a>
+            <div class="d-flex justify-content-between w-100">
+                <div class="navbar-left d-flex align-items-center" id="navbarNav">
+                    <ul class="navbar-nav d-flex align-items-center justify-content-center">
+                        <li class="nav-item">
+                            <a class="nav-link" th:href="@{/news}">NOTICIAS</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" th:href="@{/fleet}">FLOTA</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" th:href="@{/events}">EVENTOS</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" th:href="@{/history}">HISTORIA</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" th:href="@{/gallery}">GALERÍA</a>
+                        </li>
+                    </ul>
+                </div>
 
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+                <div class="navbar-center">
+                    <a class="navbar-brand d-flex align-items-center justify-content-center" th:href="@{/}">
+                        <img th:src="@{/image/logo.png}" class="navbar-logo-large" alt="Logo">
+                    </a>
+                </div>
 
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav me-auto d-flex align-items-center justify-content-center">
-                    <li class="nav-item">
-                        <a class="nav-link" th:href="@{/news}">NOTICIAS</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" th:href="@{/fleet}">FLOTA</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" th:href="@{/events}">EVENTOS</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" th:href="@{/flights}">BAUTISMOS</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" th:href="@{/history}">HISTORIA</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" th:href="@{/gallery}">GALERÍA</a>
-                    </li>
-                </ul>
+                <div class="navbar-right d-flex align-items-center">
+                    <ul class="navbar-nav d-flex align-items-center justify-content-center">
+                        <li class="nav-item me-2">
+                            <a class="nav-link" href="mailto:clubdeplaneadorese@gmail.com">
+                                <i class="fa-solid fa-envelope fa-lg"></i>
+                            </a>
+                        </li>
+                        <li class="nav-item me-2">
+                            <a class="nav-link" href="https://www.instagram.com/clubdeplaneadoresesperanza/">
+                                <i class="fa-brands fa-instagram fa-lg"></i>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="https://api.whatsapp.com/send?phone=543496565181">
+                                <i class="fa-brands fa-whatsapp fa-lg"></i>
+                            </a>
+                        </li>
+                    </ul>
 
-                <div class="d-flex align-items-center">
-                    <div sec:authorize="isAnonymous()">
-                        <a th:href="@{/login}" class="btn btn-outline-light btn-sm me-2">Ingresar</a>
+                    <div class="vr mx-3 text-white opacity-50"></div>
+
+                    <div class="d-flex align-items-center">
+                        <div sec:authorize="isAnonymous()">
+                            <a th:href="@{/login}" class="btn btn-outline-light btn-sm me-2">Ingresar</a>
+                        </div>
+                        <div sec:authorize="isAnonymous()">
+                            <a th:href="@{/sign-up}" class="btn btn-outline-light btn-sm">Registrarse</a>
+                        </div>
                     </div>
-                    <div sec:authorize="isAnonymous()">
-                        <a th:href="@{/sign-up}" class="btn btn-outline-light btn-sm">Registrarse</a>
-                    </div>
+                </div>
                 </div>
             </div>
         </div>
