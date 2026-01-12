@@ -25,7 +25,8 @@ public class SecurityConfig {
                                 "/css/**",
                                 "/js/**",
                                 "/image/**",
-                                "/webjars/**"
+                                "/webjars/**",
+                                "/contact"
                         ).permitAll()
                         // 3. Everything else requires login
                         .anyRequest().authenticated()
