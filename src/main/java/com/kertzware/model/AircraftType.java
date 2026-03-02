@@ -7,7 +7,7 @@ import lombok.Data;
 @Data
 public class AircraftType {
 
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue
     @Id
     private Long id;
 

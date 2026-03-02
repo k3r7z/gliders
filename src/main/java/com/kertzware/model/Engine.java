@@ -7,7 +7,7 @@ import lombok.Data;
 @Data
 public class Engine {
 
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue
     @Id
     private Long id;
 
@@ -23,6 +23,6 @@ public class Engine {
     @Column(nullable = false)
     private Float weight;
 
-    @Column(nullable = false)
+    @ManyToOne(optional = false)
     private Aircraft aircraft;
 }

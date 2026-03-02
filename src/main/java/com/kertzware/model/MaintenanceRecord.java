@@ -9,7 +9,7 @@ import java.time.LocalDate;
 @Data
 public class MaintenanceRecord {
 
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue
     @Id
     private Long id;
 
