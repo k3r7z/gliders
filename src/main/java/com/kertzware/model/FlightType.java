@@ -16,4 +16,7 @@ public class FlightType {
 
     @Column(nullable = false, unique = true)
     private String name;
+
+    @Column(nullable = false, unique = true)
+    private String abbreviation;
 }
