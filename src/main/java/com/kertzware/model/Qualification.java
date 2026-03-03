@@ -7,7 +7,7 @@ import lombok.Data;
 @Data
 public class Qualification {
 
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     private Long id;
 

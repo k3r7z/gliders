@@ -7,7 +7,7 @@ import lombok.Data;
 @Data
 public class MaintenanceType {
 
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     private Long id;
 
