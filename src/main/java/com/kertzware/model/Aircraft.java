@@ -17,14 +17,30 @@ public class Aircraft {
     @Column(nullable = false)
     private String model;
 
-    @Column(nullable = false)
-    private Float totalAirframeHours = 0.0f;
+    private Float totalAirframeHours;
 
     @Column(nullable = false)
     private Boolean isGrounded;
 
-    @Column(nullable = false)
-    private Double weight;
+    private Double emptyWeight;
+
+    private Double MTOW;
+
+    private Double wingspan;
+
+    private Integer capacity;
+
+    private Double cargo;
+
+    private Double length;
+
+    private Double height;
+
+    private Double wingArea;
+
+    private Double fuelCapacity;
+
+    private Double aspectRatio;
 
     @ManyToOne
     private AircraftType aircraftType;

@@ -5,21 +5,16 @@ import lombok.Data;
 
 @Entity
 @Data
-public class Aerodrome {
+public class Role {
 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     private Long id;
 
-    @Column(unique = true)
-    private String icaoCode;
-
-    @Column(unique = true)
-    private String localCode;
-
-    @Column(nullable = false)
+    @Column(unique = true, nullable = false)
     private String name;
 
-    @ManyToOne
-    private Province location;
+    @Column(nullable = false)
+    private String description;
+
 }
