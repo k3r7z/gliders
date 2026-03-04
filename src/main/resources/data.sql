@@ -1,4 +1,14 @@
-INSERT INTO qualification_type (name) VALUES ('License'), ('Rating');
+INSERT INTO qualification_type (name) VALUES ('License'), ('Rating'), ('Medical');
+
+INSERT INTO qualification (name, description, qualification_type_id)
+VALUES ('Piloto Comercial de Avión', 'Piloto de avión capaz de ejercer vuelos de forma remunerada', 1),
+       ('Piloto de Planeador', NULL, 1),
+       ('Instructor de vuelo de Avión', NULL, 2),
+       ('Instructor de vuelo de Planeador', NULL, 2),
+       ('Piloto Privado de Avión','Realiza vuelos recreativos', 1),
+       ('CMA Clase 2', 'Certificado Médico Aeronáutico Clase 2 (vuelos no remunerados)', 3),
+       ('CMA Clase 1', 'Certificado Médico Aeronáutico Clase 1 (vuelos remunerados)', 3);
+
 
 INSERT INTO province (id, name) VALUES
 (1, 'Buenos Aires'),
@@ -108,11 +118,23 @@ INSERT INTO users (username, password, enabled) VALUES
 ('heisser', '$2a$12$eZb/0opWWrJQMPgB6Z9Unu/NusUZtZ/OVQ2XSQrzasvNjopyr6ayi', true),
 ('joemomma', 'password', true);
 
+
 -- 2. Create the Member (Physical Profile)
 INSERT INTO member (user_id, member_id, first_name, last_name, birthday, sign_up_date, gender, email, phone, address, is_active) VALUES
 (1, 55, 'Bruno', 'Leanza', '1996-03-03', '2022-03-01', 'Male', 'kertz@example.com', '+54 342 1234567', 'San Martín 2551, Santa Fe, Argentina', true),
 (2, 21, 'José Luis', 'Heisser', '1996-03-03', '2022-03-01', 'Male', 'heisser@cpae.com', '+54 342 1234567', 'Belgrano 231, Esperanza, Argentina', true),
 (3, 34, 'Joe', 'Momma', '1983-06-29', '2005-09-25', 'Male', 'joemama@cpae.com', '+54 341 35132523', 'Alameda 523, Paraná, Entre Ríos', true );
+
+INSERT INTO qualification_issuance(qualification_id, member_id, emission_date, expiration_date ) VALUES
+(6, 1, '2018-05-22', '2021-05-22'),
+(7, 1, '2019-05-04', '2020-04-15'),
+(7, 1, '2020-05-04', '2021-04-15'),
+(7, 1, '2022-05-04', '2023-04-15'),
+(7, 1, '2023-05-04', '2024-04-15'),
+(7, 1, '2024-05-04', '2025-04-15'),
+(7, 1, '2025-05-04', '2026-04-15'),
+(4, 2, '2018-03-06', NULL),
+(1, 1, '2022-09-21', NULL);
 
 
 -- 4. Assign Roles via RoleRecord (Linking Member to Roles)
