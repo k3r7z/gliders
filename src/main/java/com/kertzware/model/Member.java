@@ -9,7 +9,7 @@ import java.time.LocalDate;
 @Data
 public class Member {
 
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     private Long id;
 
@@ -34,7 +34,7 @@ public class Member {
     @Column(nullable = false)
     private String phone;
 
-    @Column(nullable = false)
+    @Column(unique = true, nullable = false)
     private String address;
 
     private String email;

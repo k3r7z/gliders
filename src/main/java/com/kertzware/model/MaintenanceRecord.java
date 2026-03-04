@@ -9,7 +9,7 @@ import java.time.LocalDate;
 @Data
 public class MaintenanceRecord {
 
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     private Long id;
 

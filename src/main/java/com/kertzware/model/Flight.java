@@ -8,7 +8,7 @@ import java.time.ZonedDateTime;
 @Data
 public class Flight {
 
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     private Long id;
 

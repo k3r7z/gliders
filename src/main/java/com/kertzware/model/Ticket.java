@@ -9,7 +9,7 @@ import java.time.LocalDate;
 @Data
 public class Ticket {
 
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     private Long id;
 

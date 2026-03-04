@@ -1,16 +1,13 @@
 package com.kertzware.model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Data;
 
 @Entity
 @Data
 public class Aerodrome {
 
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     private Long id;
 
@@ -23,4 +20,6 @@ public class Aerodrome {
     @Column(nullable = false)
     private String name;
 
+    @ManyToOne
+    private Province location;
 }

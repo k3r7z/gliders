@@ -5,12 +5,16 @@ import lombok.Data;
 
 @Entity
 @Data
-public class AircraftType {
+public class Role {
 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     private Long id;
 
-    @Column(nullable = false, unique = true)
+    @Column(unique = true, nullable = false)
     private String name;
+
+    @Column(nullable = false)
+    private String description;
+
 }
