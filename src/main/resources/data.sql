@@ -1,6 +1,5 @@
 INSERT INTO qualification_type (name) VALUES ('License'), ('Rating');
 
-
 INSERT INTO province (id, name) VALUES
 (1, 'Buenos Aires'),
 (2, 'Ciudad Autónoma de Buenos Aires'),
@@ -27,30 +26,30 @@ INSERT INTO province (id, name) VALUES
 (23, 'Tierra del Fuego'),
 (24, 'Tucumán');
 
-INSERT INTO flight_type (abbreviation, name) VALUES
-('RP', 'Remolque'),
-('ACR', 'Acrobacia'),
-('ADAP', 'Adaptación'),
-('AER', 'Aeroaplicador'),
-('CI', 'Combate contra Incendios de Bosques y Campos'),
-('ENT', 'Entrenamiento'),
-('LA', 'Línea Aérea. (RAAC 121)'),
-('EXA', 'Examen'),
-('FOR', 'Formación'),
-('FOT', 'Fotografía'),
-('I', 'Instructor (Impartición de instrucción)'),
-('INST', 'Instrucción. (Recepción de instrucción'),
-('IP', 'Inspector (inspección de pilotos o alumnos pilotos'),
-('LP', 'Lanzamiento de paracaidistas'),
-('N', 'Vuelo No Regular. (RAAC 135)'),
-('PA', 'Prueba de aeronaves'),
-('READ', 'Readaptación'),
-('SAN', 'Sanitario'),
-('TA', 'Trabajo Aéreo'),
-('VO', 'Vuelo Oficial'),
-('VP', 'Vuelo Privado'),
-('LTCP', 'Inspector'),
-('TCPINS', 'Tripulante de Cabina de Pasajeros en Instrucción.');
+INSERT INTO flight_type (id, abbreviation, name) VALUES
+(1,'RP', 'Remolque'),
+(2,'ACR', 'Acrobacia'),
+(3,'ADAP', 'Adaptación'),
+(4,'AER', 'Aeroaplicador'),
+(5, 'CI', 'Combate contra Incendios de Bosques y Campos'),
+(6, 'ENT', 'Entrenamiento'),
+(7, 'LA', 'Línea Aérea. (RAAC 122)'),
+(8, 'EXA', 'Examen'),
+(9, 'FOR', 'Formación'),
+(10, 'FOT', 'Fotografía'),
+(11, 'I', 'Instructor (Impartición de instrucción)'),
+(12, 'INST', 'Instrucción. (Recepción de instrucción'),
+(13, 'IP', 'Inspector (inspección de pilotos o alumnos pilotos'),
+(14, 'LP', 'Lanzamiento de paracaidistas'),
+(15, 'N', 'Vuelo No Regular. (RAAC 136)'),
+(16, 'PA', 'Prueba de aeronaves'),
+(17, 'READ', 'Readaptación'),
+(18, 'SAN', 'Sanitario'),
+(19, 'TA', 'Trabajo Aéreo'),
+(20, 'VO', 'Vuelo Oficial'),
+(21, 'VP', 'Vuelo Privado'),
+(22, 'LTCP', 'Inspector'),
+(23, 'TCPINS', 'Tripulante de Cabina de Pasajeros en Instrucción.');
 
 INSERT INTO aircraft_type (name) VALUES ('Avión'), ('Planeador');
 
@@ -91,10 +90,10 @@ INSERT INTO aerodrome (icao_code, local_code, name, location_id) VALUES
 ('SRDE', 'LEN', 'Aeródromo Belén de Escobar', 1);
 
 
-
 INSERT INTO aircraft (registration, model, is_grounded, aircraft_type_id) VALUES
+('LV-ANH', 'Piper PA-38 Tomahawk', false, 1),
 ('LV-ASH', 'Aero Boero 180 AB', false, 1),
-('LV-ANH', 'Piper PA-38 Tomahawk', false, 1);
+('LV-DLS', 'ICA IS 29', false, 2);
 
 
 INSERT INTO role (name, description) VALUES
@@ -106,12 +105,15 @@ INSERT INTO role (name, description) VALUES
 -- 1. Create the User (System Login)
 INSERT INTO users (username, password, enabled) VALUES
 ('bruno', '$2a$12$sh8T2WA6HmfyRSxcFEG2euyIJqitqYjKkXKx1taIUgL3NBS87YCM.', true),
-('heisser', '$2a$12$eZb/0opWWrJQMPgB6Z9Unu/NusUZtZ/OVQ2XSQrzasvNjopyr6ayi', true);
+('heisser', '$2a$12$eZb/0opWWrJQMPgB6Z9Unu/NusUZtZ/OVQ2XSQrzasvNjopyr6ayi', true),
+('joemomma', 'password', true);
 
 -- 2. Create the Member (Physical Profile)
 INSERT INTO member (user_id, member_id, first_name, last_name, birthday, sign_up_date, gender, email, phone, address, is_active) VALUES
-(1, 1001, 'Bruno', 'Leanza', '1996-03-03', '2022-03-01', 'Male', 'kertz@example.com', '+54 342 1234567', 'San Martín 2551, Santa Fe, Argentina', true),
-(2, 57, 'José Luis', 'Heisser', '1996-03-03', '2022-03-01', 'Male', 'heisser@cpae.com', '+54 342 1234567', 'Belgrano 231, Esperanza, Argentina', true);
+(1, 55, 'Bruno', 'Leanza', '1996-03-03', '2022-03-01', 'Male', 'kertz@example.com', '+54 342 1234567', 'San Martín 2551, Santa Fe, Argentina', true),
+(2, 21, 'José Luis', 'Heisser', '1996-03-03', '2022-03-01', 'Male', 'heisser@cpae.com', '+54 342 1234567', 'Belgrano 231, Esperanza, Argentina', true),
+(3, 34, 'Joe', 'Momma', '1983-06-29', '2005-09-25', 'Male', 'joemama@cpae.com', '+54 341 35132523', 'Alameda 523, Paraná, Entre Ríos', true );
+
 
 -- 4. Assign Roles via RoleRecord (Linking Member to Roles)
 INSERT INTO role_record (user_id, role_id, since, until) VALUES
@@ -120,4 +122,22 @@ INSERT INTO role_record (user_id, role_id, since, until) VALUES
 (2, 1, '2026-03-03', NULL),
 (2,  4, '2026-03-01', NULL);
 
--- Giving the user the 'President' role starting now
+-- 1. Solo Flight in a Plane
+-- PIC: Kertz | Instructor: NULL | Aircraft: Airplane | Tow: NULL
+INSERT INTO flight (code, start_time, stop_time, aircraft_id, departure_id, destination_id, flight_type_id, instructor_id, pilot_in_command_id, tow_airplane_id)
+VALUES (1001, '2026-03-03T09:00:00-03:00', '2026-03-03T10:00:00-03:00', 1, 1, 1, 21, NULL, 1, NULL);
+
+-- 2. Instruction Flight in a Plane
+-- PIC: Kertz | Instructor: Joe | Aircraft: Airplane | Tow: NULL
+INSERT INTO flight (code, start_time, stop_time, aircraft_id, departure_id, destination_id, flight_type_id, instructor_id, pilot_in_command_id, tow_airplane_id)
+VALUES (1002, '2026-03-03T11:00:00-03:00', '2026-03-03T12:00:00-03:00', 1, 1, 1, 12, 2, 1, NULL);
+
+-- 3. Solo Glider Flight Towed by a Plane
+-- PIC: Kertz | Instructor: NULL | Aircraft: Glider | Tow: Airplane
+INSERT INTO flight (code, start_time, stop_time, aircraft_id, departure_id, destination_id, flight_type_id, instructor_id, pilot_in_command_id, tow_airplane_id)
+VALUES (1003, '2026-03-03T14:00:00-03:00', '2026-03-03T14:45:00-03:00', 3, 1, 1, 21, NULL, 1, 2);
+
+-- 4. Instruction Glider Flight Towed by a Plane
+-- PIC: Kertz | Instructor: Joe | Aircraft: Glider | Tow: Airplane
+INSERT INTO flight (code, start_time, stop_time, aircraft_id, departure_id, destination_id, flight_type_id, instructor_id, pilot_in_command_id, tow_airplane_id)
+VALUES (1004, '2026-03-03T16:00:00-03:00', '2026-03-03T17:00:00-03:00', 3, 1, 1, 12, 2, 1, 2);
