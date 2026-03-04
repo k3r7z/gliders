@@ -16,12 +16,12 @@ services:
     networks:
       - backend-network
 
-  backend:
-    image: ${PROJECT_NAME}-backend
-    container_name: ${PROJECT_NAME}-backend
+  app:
+    image: ${PROJECT_NAME}-app
+    container_name: ${PROJECT_NAME}-app
     build:
       context: .
-      dockerfile: docker/backend/Dockerfile
+      dockerfile: docker/app/Dockerfile
     ports:
       - "8080:8080"
     depends_on:
