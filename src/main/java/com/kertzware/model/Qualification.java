@@ -14,7 +14,7 @@ public class Qualification {
     @Column(nullable = false)
     private String name;
 
-    private String details;
+    private String description;
 
     @ManyToOne
     private QualificationType qualificationType;
