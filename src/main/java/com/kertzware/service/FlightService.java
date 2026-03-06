@@ -1,15 +1,18 @@
 package com.kertzware.service;
 
 import com.kertzware.dto.FlightDTO;
+import com.kertzware.model.Aerodrome;
 import com.kertzware.model.Flight;
 import com.kertzware.repository.FlightRepository;
 import org.springframework.stereotype.Service;
-
 import java.time.Duration;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Service class that manages processes regarding flights
+ */
 @Service
 public class FlightService {
 
@@ -32,8 +35,8 @@ public class FlightService {
                     .type(flight.getFlightType().getName())
                     .date(flight.getStartTime().format(DATE_FORMATTER))
                     .startTime(flight.getStartTime().format(TIME_FORMATTER))
-                    .departureCode(flight.getDeparture().getIcaoCode() != null ? flight.getDeparture().getIcaoCode() : flight.getDeparture().getLocalCode())
-                    .destinationCode(flight.getDestination().getIcaoCode() != null ? flight.getDestination().getIcaoCode() : flight.getDestination().getLocalCode())
+                    .departureCode(getCode(flight.getDeparture()))
+                    .destinationCode(getCode(flight.getDestination()))
                     .stopTime(flight.getStopTime().format(TIME_FORMATTER))
                     .duration(calculateDuration(flight))
                     .aircraftReg(flight.getAircraft().getRegistration())
@@ -45,12 +48,20 @@ public class FlightService {
 
 
     /**
+     * Returns the ICAO designation, or the local otherwise
+     * @param aerodrome the aerodrome
+     * @return the designation of the aerodrome
+     */
+    private String getCode(Aerodrome aerodrome){
+        return aerodrome.getIcaoCode() != null ? aerodrome.getIcaoCode() : aerodrome.getLocalCode();
+    }
+
+    /**
      * Calculates flight duration even considering a flight covers two days
      * @param flight the flight
      * @return the duration in string format for the DTO
      */
     private String calculateDuration(Flight flight) {
-        // This works perfectly even if stopTime is on the next day
         Duration duration = Duration.between(flight.getStartTime(), flight.getStopTime());
         long hours = duration.toHours();
         long minutes = duration.toMinutesPart();

@@ -68,39 +68,40 @@ INSERT INTO aircraft_type (name) VALUES ('Avión'), ('Planeador');
 
 INSERT INTO maintenance_type(name) VALUES ('Overhaul');
 
-INSERT INTO aerodrome (icao_code, local_code, name, location_id) VALUES
-(NULL, 'EPZ', 'Aeródromo de Esperanza', 21),
-('SABE', 'AER', 'Aeroparque Jorge Newbery', 2),
-('SAEZ', 'EZE', 'Aeropuerto Internacional Ministro Pistarini', 1),
-('SADP', 'EPA', 'Aeropuerto El Palomar', 1),
-('SACO', 'COR', 'Aeropuerto Pajas Blancas', 6),
-('SAME', 'MDZ', 'Aeropuerto El Plumerillo', 13),
-('SAZS', 'BRC', 'Aeropuerto Teniente Luis Candelaria', 16),
-('SAAR', 'ROS', 'Aeropuerto Islas Malvinas', 21),
-('SAAV', 'SFN', 'Aeropuerto de Sauce Viejo', 21),
-('SAZN', 'NQN', 'Aeropuerto Presidente Perón', 15),
-('SANC', 'CTC', 'Aeropuerto Coronel Felipe Varela', 3),
-('SAZB', 'BHI', 'Aeropuerto Comandante Espora', 1),
-('SAZM', 'MDQ', 'Aeropuerto Astor Piazzolla', 1),
-('SANT', 'TUC', 'Aeropuerto Teniente Benjamín Matienzo', 24),
-('SASA', 'SLA', 'Aeropuerto Martín Miguel de Güemes', 17),
-('SAWH', 'USH', 'Aeropuerto de Ushuaia Malvinas Argentinas', 23);
+INSERT INTO aerodrome (id, icao_code, local_code, name, location_id) VALUES
+(1,NULL, 'EPZ', 'Aeródromo de Esperanza', 21),
+(2,'SABE', 'AER', 'Aeroparque Jorge Newbery', 2),
+(3,'SAEZ', 'EZE', 'Aeropuerto Internacional Ministro Pistarini', 1),
+(4,'SADP', 'EPA', 'Aeropuerto El Palomar', 1),
+(5,'SACO', 'COR', 'Aeropuerto Pajas Blancas', 6),
+(6,'SAME', 'MDZ', 'Aeropuerto El Plumerillo', 13),
+(7,'SAZS', 'BRC', 'Aeropuerto Teniente Luis Candelaria', 16),
+(8,'SAAR', 'ROS', 'Aeropuerto Islas Malvinas', 21),
+(9,'SAAV', 'SFN', 'Aeropuerto de Sauce Viejo', 21),
+(10,'SAZN', 'NQN', 'Aeropuerto Presidente Perón', 15),
+(11,'SANC', 'CTC', 'Aeropuerto Coronel Felipe Varela', 3),
+(12,'SAZB', 'BHI', 'Aeropuerto Comandante Espora', 1),
+(13,'SAZM', 'MDQ', 'Aeropuerto Astor Piazzolla', 1),
+(14,'SANT', 'TUC', 'Aeropuerto Teniente Benjamín Matienzo', 24),
+(15,'SASA', 'SLA', 'Aeropuerto Martín Miguel de Güemes', 17),
+(16,'SAWH', 'USH', 'Aeropuerto de Ushuaia Malvinas Argentinas', 23);
 
-INSERT INTO aerodrome (icao_code, local_code, name, location_id) VALUES
-('SACD', 'EDO', 'Aeroclub Coronel Olmedo', 6),
-('SAZA', 'ZUL', 'Aeródromo Azul', 1),
-('SAZI', 'BLR', 'Aeródromo Bolívar', 1),
-('SAZC', 'SUZ', 'Aeródromo Coronel Suárez', 1),
-('SADL', 'LPG', 'Aeródromo La Plata', 1),
-('SADF', 'FDO', 'Aeródromo San Fernando', 1),
-('SAOR', 'VME', 'Aeropuerto de Villa Reynolds', 19),
-('SAVR', 'ARS', 'Aeródromo Alto Río Senguerr', 5),
-('SACN', 'NGA', 'Aeródromo Ascochinga', 6),
-('SAHI', 'CIP', 'Aeródromo Cipoletti', 16),
-('SANW', 'ERE', 'Aeropuerto Ceres', 21),
-('SAZW', 'CUT', 'Aeropuerto Cutral-Có', 15),
-('SRDR', 'GEZ', 'Aeroclub General Rodríguez (EAA)', 1),
-('SRDE', 'LEN', 'Aeródromo Belén de Escobar', 1);
+
+INSERT INTO aerodrome (id, icao_code, local_code, name, location_id) VALUES
+(17,'SACD', 'EDO', 'Aeroclub Coronel Olmedo', 6),
+(18,'SAZA', 'ZUL', 'Aeródromo Azul', 1),
+(19,'SAZI', 'BLR', 'Aeródromo Bolívar', 1),
+(20,'SAZC', 'SUZ', 'Aeródromo Coronel Suárez', 1),
+(21,'SADL', 'LPG', 'Aeródromo La Plata', 1),
+(22,'SADF', 'FDO', 'Aeródromo San Fernando', 1),
+(23,'SAOR', 'VME', 'Aeropuerto de Villa Reynolds', 19),
+(24,'SAVR', 'ARS', 'Aeródromo Alto Río Senguerr', 5),
+(25,'SACN', 'NGA', 'Aeródromo Ascochinga', 6),
+(26,'SAHI', 'CIP', 'Aeródromo Cipoletti', 16),
+(27,'SANW', 'ERE', 'Aeropuerto Ceres', 21),
+(28,'SAZW', 'CUT', 'Aeropuerto Cutral-Có', 15),
+(29,'SRDR', 'GEZ', 'Aeroclub General Rodríguez (EAA)', 1),
+(30,'SRDE', 'LEN', 'Aeródromo Belén de Escobar', 1);
 
 
 INSERT INTO aircraft (registration, model, is_grounded, aircraft_type_id) VALUES
@@ -160,3 +161,9 @@ VALUES (1003, '2026-03-03T14:00:00-03:00', '2026-03-03T14:45:00-03:00', 3, 1, 1,
 
 INSERT INTO flight (code, start_time, stop_time, aircraft_id, departure_id, destination_id, flight_type_id, instructor_id, pilot_in_command_id, tow_airplane_id)
 VALUES (1004, '2026-03-03T16:00:00-03:00', '2026-03-03T17:00:00-03:00', 3, 1, 1, 12, 2, 1, 2);
+
+INSERT INTO flight (code, start_time, stop_time, aircraft_id, departure_id, destination_id, flight_type_id, instructor_id, pilot_in_command_id, tow_airplane_id)
+VALUES (1005, '2025-09-21T17:25:00-03:00', '2025-09-21T18:13:00-03:00', 1, 1, 9, 21, NULL, 1, NULL);
+
+INSERT INTO flight (code, start_time, stop_time, aircraft_id, departure_id, destination_id, flight_type_id, instructor_id, pilot_in_command_id, tow_airplane_id)
+VALUES (1006, '2025-09-21T19:00:00-03:00', '2025-09-21T19:18:00-03:00', 1, 9, 1, 21, NULL, 1, NULL);

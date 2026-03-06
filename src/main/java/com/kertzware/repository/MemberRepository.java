@@ -1,6 +1,5 @@
 package com.kertzware.repository;
 
-import com.kertzware.model.Flight;
 import com.kertzware.model.Member;
 import com.kertzware.model.QualificationIssuance;
 import com.kertzware.model.RoleRecord;
