@@ -6,8 +6,8 @@ INSERT INTO qualification (id, name, description, qualification_type_id) VALUES
 (3,'Instructor de vuelo de Avión', NULL, 2),
 (4,'Instructor de vuelo de Planeador', NULL, 2),
 (5,'Piloto Privado de Avión','Realiza vuelos recreativos', 1),
-(6,'CMA Clase 2', 'Certificado Médico Aeronáutico Clase 2 (vuelos no remunerados)', 3),
-(7,'CMA Clase 1', 'Certificado Médico Aeronáutico Clase 1 (vuelos remunerados)', 3),
+(6,'Clase 2', 'Certificado Médico Aeronáutico Clase 2 (vuelos no remunerados)', 3),
+(7,'Clase 1', 'Certificado Médico Aeronáutico Clase 1 (vuelos remunerados)', 3),
 (8,'Vuelo local nocturno', '', 2),
 (9, 'Vuelo por instrumentos', '', 2),
 (10, 'Vuelo multimotor', '', 2);
