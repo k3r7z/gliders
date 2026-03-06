@@ -14,8 +14,8 @@ public class MemberProfileDTO {
     private Integer memberId;
     private String email;
     private List<RoleRecord> activeRoles;
-    private List<QualificationIssuance> licesesIssuances;
-    private List<QualificationIssuance> ratingsIssuances;
+    private List<QualificationIssuance> licenseIssuances;
+    private List<QualificationIssuance> ratingIssuances;
     private List<QualificationIssuance> medicalIssuances;
     private List<FlightDTO> flights;
 }

@@ -35,17 +35,12 @@
                     <hr class="border-light">
 
                     <h5>Calificaciones</h5>
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item bg-transparent text-white d-flex justify-content-between align-items-center border-secondary px-0"
-                            th:each="issuance : ${profile.licesesIssuances}">
-                            <span th:text="${issuance.qualification.name}">Licencia</span>
-                        </li>
-
-                        <li class="list-group-item bg-transparent text-white d-flex justify-content-between align-items-center border-secondary px-0"
-                            th:each="issuance : ${profile.ratingsIssuances}">
-                            <span th:text="${issuance.qualification.name}">Habilitación</span>
-                        </li>
-                    </ul>
+                    <div th:each="issuance: ${profile.licenseIssuances}">
+                        <p th:text="${issuance.qualification.name}" class="text-start">License</p>
+                    </div>
+                    <div th:each="issuance: ${profile.ratingIssuances}">
+                        <p th:text="${issuance.qualification.name}" class="text-start">Rating</p>
+                    </div>
 
                     <hr class="border-light">
 
@@ -68,7 +63,7 @@
                     </div>
 
                     <div th:if="${not profile.flights.isEmpty()}">
-                        <table class="table table-dark tablo-borderless mt-3">
+                        <table class="table table-dark bg-dark tablo-borderless mt-3">
                             <thead>
                             <tr>
                                 <th scope="col">#</th>

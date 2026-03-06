@@ -46,8 +46,8 @@ public class MemberService {
                 .email(member.getEmail())
                 .memberId(member.getMemberId())
                 .activeRoles(activeRoles)
-                .licesesIssuances(licenseIssuances)
-                .ratingsIssuances(ratingIssuances)
+                .licenseIssuances(licenseIssuances)
+                .ratingIssuances(ratingIssuances)
                 .medicalIssuances(medicalIssuances)
                 .flights(flights)
                 .build();
