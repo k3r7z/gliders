@@ -53,27 +53,31 @@
             <div class="card bg-dark text-white p-1" style="--bs-bg-opacity: .8;">
                 <div class="card-body">
                     <h4 class="card-title border-bottom border-secondary pb-2">Resumen de Vuelos</h4>
-                    <div class="row text-center mt-3">
-                        <ul class="list-group list-group-flush">
-                            <li class="list-group-item bg-transparent text-white d-flex justify-content-between align-items-center border-secondary px-0"
-                                th:each="flight : ${profile.flights}">
-                                <div>
-                                    <strong th:text="${flight.aircraft.registration}">LV-ABC</strong>
-                                </div>
 
-                            </li>
-                        </ul>
-                        <!--
-                        <div class="col-6">
-                            <h2 class="text-info" th:text="${profile.totalFlightHours + ' hs'}">0 hs</h2>
-                            <p class="text-muted">Horas Totales (PIC)</p>
-                        </div>
-                        -->
-                        <div class="col-6">
-                            <h2 class="text-info" th:text="${profile.lastFlightDate != null ? #temporals.format(profile.lastFlightDate, 'dd/MM/yyyy') : 'N/A'}">--/--/----</h2>
-                            <p class="text-muted">Último Vuelo</p>
-                        </div>
-                    </div>
+                    <table class="table mt-3">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Inicio (UTC)</th>
+                                <th scope="col">Salida (UTC)</th>
+                                <th scope="col">Destino</th>
+                                <th scope="col">Final</th>
+                                <th scope="col">Duración</th>
+                                <th scope="col">Aeronave</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="flight, flightStat : ${profile.flights}">
+                                <td th:text="${flightStat.index}"></td>
+                                <td th:text="${flight.startTime}"></td>
+                                <td th:text="${flight.departureCode}"></td>
+                                <td th:text="${flight.destinationCode}"></td>
+                                <td th:text="${flight.stopTime}"></td>
+                                <td th:text="${flight.duration}"></td>
+                                <td th:text="${flight.aircraftReg}"></td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>

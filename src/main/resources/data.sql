@@ -69,7 +69,7 @@ INSERT INTO aircraft_type (name) VALUES ('Avión'), ('Planeador');
 INSERT INTO maintenance_type(name) VALUES ('Overhaul');
 
 INSERT INTO aerodrome (icao_code, local_code, name, location_id) VALUES
-('', 'EPZ', 'Aeródromo de Esperanza', 21),
+(NULL, 'EPZ', 'Aeródromo de Esperanza', 21),
 ('SABE', 'AER', 'Aeroparque Jorge Newbery', 2),
 ('SAEZ', 'EZE', 'Aeropuerto Internacional Ministro Pistarini', 1),
 ('SADP', 'EPA', 'Aeropuerto El Palomar', 1),

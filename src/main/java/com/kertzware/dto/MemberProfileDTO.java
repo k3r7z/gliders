@@ -17,5 +17,5 @@ public class MemberProfileDTO {
     private List<QualificationIssuance> licesesIssuances;
     private List<QualificationIssuance> ratingsIssuances;
     private List<QualificationIssuance> medicalIssuances;
-    private List<Flight> flights;
+    private List<FlightDTO> flights;
 }

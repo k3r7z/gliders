@@ -1,12 +1,12 @@
 package com.kertzware.service;
 
+import com.kertzware.dto.FlightDTO;
 import com.kertzware.dto.MemberProfileDTO;
 import com.kertzware.model.*;
 import com.kertzware.repository.FlightRepository;
 import com.kertzware.repository.MemberRepository;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.stereotype.Service;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,11 +14,11 @@ import java.util.List;
 public class MemberService {
 
     private final MemberRepository memberRepository;
-    private final FlightRepository flightRepository;
+    private final FlightService flightService;
 
-    public MemberService(MemberRepository memberRepository, FlightRepository flightRepository){
+    public MemberService(MemberRepository memberRepository, FlightService flightService){
         this.memberRepository = memberRepository;
-        this.flightRepository = flightRepository;
+        this.flightService = flightService;
     }
 
     public MemberProfileDTO getProfileByUsername(String username){
@@ -39,7 +39,7 @@ public class MemberService {
             }
         }
 
-        List<Flight> flights = flightRepository.findFlightsByPilotInCommandId(member.getId());
+        List<FlightDTO> flights = flightService.findFlightsByMemberId(member.getId());
 
         return MemberProfileDTO.builder()
                 .name(member.getFirstName() + ' ' + member.getLastName())
