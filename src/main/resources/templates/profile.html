@@ -1,0 +1,99 @@
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.w3.org/1999/xhtml"
+      layout:decorate="~{layout/main}">
+<div layout:fragment="content" class="container mt-3">
+    <div class="row mb-3">
+        <div class="col-md-3">
+            <div class="card bg-dark text-white p-1" style="--bs-bg-opacity: .8;">
+                <div class="card-body text-center">
+                    <h3 class="card-title" th:text="${profile.name}">Nombre Apellido</h3>
+
+                    <div class="row mt-3">
+                        <div class="col">
+                            <p class="mb-0 fw-bold" th:text="${profile.memberId}">47</p>
+                            <p class="fw-light">Socio #</p>
+                        </div>
+                        <div class="col">
+                            <p class="fw-bold mb-0" th:if="${profile.getMedicalIssuances().isEmpty()}">--</p>
+                            <p class="fw-bold mb-0" th:each="issuance : ${profile.getMedicalIssuances()}"
+                               th:text="${issuance.qualification.name}">Clase 2</p>
+                            <p class="fw-light">CMA</p>
+                        </div>
+                    </div>
+
+                    <div class="row mt-3">
+                        <div class="col">
+                            <p class="mb-0 fw-bold" th:text="${profile.memberId}">203.4</p>
+                            <p class="fw-light">Avión</p>
+                        </div>
+                        <div class="col">
+                            <p class="mb-0 fw-bold">1087.2 h</p>
+                            <p class="fw-light">Planeador</p>
+                        </div>
+                    </div>
+
+                    <hr class="border-light">
+
+                    <h5>Calificaciones</h5>
+                    <div th:each="issuance: ${profile.licenseIssuances}">
+                        <p th:text="${issuance.qualification.name}" class="text-start">License</p>
+                    </div>
+                    <div th:each="issuance: ${profile.ratingIssuances}">
+                        <p th:text="${issuance.qualification.name}" class="text-start">Rating</p>
+                    </div>
+
+                    <hr class="border-light">
+
+                    <h5>Roles</h5>
+                    <div class="d-flex flex-wrap justify-content-center gap-2 mt-3">
+                        <span class="badge bg-primary" th:each="role : ${profile.activeRoles}" th:text="${role.role.name}">PILOTO</span>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-9">
+            <div class="card bg-dark text-white p-1" style="--bs-bg-opacity: .8;">
+                <div class="card-body">
+                    <h4 class="card-title border-bottom border-secondary">Resumen de Vuelos</h4>
+
+                    <div th:if="${profile.flights.isEmpty()}">
+                        <h class="text-center text-secondary mb-0 pt-3">No hay vuelos registrados</h>
+                    </div>
+
+                    <div th:if="${not profile.flights.isEmpty()}">
+                        <table class="table table-dark bg-dark tablo-borderless mt-3">
+                            <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Inicio (*)</th>
+                                <th scope="col">Salida</th>
+                                <th scope="col">Destino</th>
+                                <th scope="col">Final (*)</th>
+                                <th scope="col">Duración</th>
+                                <th scope="col">Aeronave</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="flight, flightStat : ${profile.flights}">
+                                <td th:text="${flightStat.index+1}"></td>
+                                <td th:text="${flight.startTime}"></td>
+                                <td th:text="${flight.departureCode}"></td>
+                                <td th:text="${flight.destinationCode}"></td>
+                                <td th:text="${flight.stopTime}"></td>
+                                <td th:text="${flight.duration}"></td>
+                                <td th:text="${flight.aircraftReg}"></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <p class="text-secondary mb-0">(*): Los horarios se muestran en UTC</p>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</html>

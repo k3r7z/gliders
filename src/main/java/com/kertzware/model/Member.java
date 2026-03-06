@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.Data;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Data
@@ -43,5 +44,8 @@ public class Member {
 
     @OneToOne
     private User user;
+
+    @OneToMany
+    private List<Flight> flights;
 
 }
