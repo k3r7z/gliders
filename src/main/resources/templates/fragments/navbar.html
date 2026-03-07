@@ -1,6 +1,6 @@
 <!DOCTYPE HTML>
-<html xmlns:sec="http://www.w3.org/1999/xhtml">
-
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.w3.org/1999/xhtml" lang="es">
 
 <div th:fragment="navbar">
     <nav class="navbar navbar-expand-lg navbar-dark bg-transparent">
@@ -53,15 +53,17 @@
 
                     <div class="vr mx-3 text-white opacity-50"></div>
 
-                    <div class="d-flex align-items-center">
-                        <div sec:authorize="isAnonymous()">
+                    <div class="d-flex align-items-center" sec:authorize="isAnonymous()">
+                        <div>
                             <a th:href="@{/login}" class="btn btn-outline-light btn-sm me-2">Ingresar</a>
                         </div>
-                        <div sec:authorize="isAnonymous()">
-                            <a th:href="@{/sign-up}" class="btn btn-outline-light btn-sm">Registrarse</a>
-                        </div>
                     </div>
-                </div>
+                    <div class="d-flex align-items-center" sec:authorize="isAuthenticated()">
+                        <span class="text-white me-3">Hola, <span sec:authentication="name">Usuario</span>!</span>
+                        <form method="post" th:action="@{/logout}">
+                            <button type="submit" class="btn btn-outline-danger btn-sm">Salir</button>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
