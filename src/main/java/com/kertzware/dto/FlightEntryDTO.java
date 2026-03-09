@@ -6,7 +6,7 @@ import java.time.ZonedDateTime;
 
 @Data
 public class FlightEntryDTO {
-    @NotNull(message = "Debe ingresar el ")
+    @NotNull(message = "Debe ingresar el tipo de vuelo")
     private Long flightTypeId;
 
     @NotNull(message = "Debe ingresar el aeródromo de salida")
@@ -29,5 +29,5 @@ public class FlightEntryDTO {
     @NotNull(message = "Debe seleccionar una aeronave")
     private Long aircraftId;
 
-    private Long towAirplane;
+    private Long towAirplaneId;
 }
