@@ -18,4 +18,12 @@ public interface MemberRepository extends JpaRepository<Member, Long> {
     @Query("SELECT qi FROM QualificationIssuance qi " +
             "WHERE qi.member.id = :memberId AND (qi.expirationDate IS NULL OR qi.expirationDate >= CURRENT_DATE )")
     List<QualificationIssuance> findActiveQualificationsByMemberId(@Param("memberId") Long memberId);
+
+    /**
+     * Retrieves all current active pilots using a query.
+     * The WHERE condition filters all qualification names which contain "Piloto" in it
+     * @return The list of the pilots
+     */
+    @Query("SELECT DISTINCT qi.member FROM QualificationIssuance qi WHERE qi.qualification.name LIKE 'Piloto%'")
+    List<Member> findAllPilots();
 }

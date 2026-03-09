@@ -1,9 +1,9 @@
 package com.kertzware.service;
 
 import com.kertzware.dto.FlightDTO;
-import com.kertzware.dto.MemberProfileDTO;
+import com.kertzware.dto.MemberDTO;
+import com.kertzware.dto.MemberFormDTO;
 import com.kertzware.model.*;
-import com.kertzware.repository.FlightRepository;
 import com.kertzware.repository.MemberRepository;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.stereotype.Service;
@@ -21,7 +21,20 @@ public class MemberService {
         this.flightService = flightService;
     }
 
-    public MemberProfileDTO getProfileByUsername(String username){
+    /**
+     * Returns a list of all club pilots available for form selection
+     * @return the list of DTOs
+     */
+    public List<MemberFormDTO> findAllPilotsForSelection(){
+        return memberRepository.findAllPilots().stream()
+                .map(member -> MemberFormDTO.builder()
+                        .id(member.getId())
+                        .fullName(member.getFirstName() + ' ' + member.getLastName())
+                        .build())
+                .toList();
+    }
+
+    public MemberDTO getProfileByUsername(String username){
         Member member = memberRepository.findByUserUsername(username).
                 orElseThrow( () -> new EntityNotFoundException("No member found for user: " + username));
         List<RoleRecord> activeRoles = memberRepository.findActiveRolesByUserId(member.getUser().getId());
@@ -41,8 +54,8 @@ public class MemberService {
 
         List<FlightDTO> flights = flightService.findFlightsByMemberId(member.getId());
 
-        return MemberProfileDTO.builder()
-                .name(member.getFirstName() + ' ' + member.getLastName())
+        return MemberDTO.builder()
+                .fullName(member.getFirstName() + ' ' + member.getLastName())
                 .email(member.getEmail())
                 .memberId(member.getMemberId())
                 .activeRoles(activeRoles)
