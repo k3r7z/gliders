@@ -25,7 +25,7 @@ public class MemberService {
      * Returns a list of all club pilots available for form selection
      * @return the list of DTOs
      */
-    public List<MemberFormDTO> findAllPilotsForSelection(){
+    public List<MemberFormDTO> findPilotsForSelection(){
         return memberRepository.findAllPilots().stream()
                 .map(member -> MemberFormDTO.builder()
                         .id(member.getId())
