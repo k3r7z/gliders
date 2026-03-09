@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @RequestMapping("/vuelos")
@@ -45,13 +46,16 @@ public class FlightController {
     @PostMapping("/nuevo")
     public String createFlight(@Valid @ModelAttribute("flight") FlightEntryDTO flight,
                                BindingResult result,
+                               RedirectAttributes attributes,
                                Model model){
         if(result.hasErrors()){
             populateFormModel(model);
+            attributes.addFlashAttribute("errorMessage", "Ocurrió un error al intentar registrar el vuelo");
             return "flights/flight-form";
         }
 
         flightService.saveFlight(flight);
+        attributes.addFlashAttribute("successMessage", "Vuelo registrado exitosamente!");
         return "redirect:/index?success";
     }
 
@@ -60,6 +64,7 @@ public class FlightController {
         model.addAttribute("flightTypes", flightService.findFlightTypesForSelection());
         model.addAttribute("aerodromes", aerodromeService.findAerodromesForSelection());
         model.addAttribute("pilots", memberService.findPilotsForSelection());
+        model.addAttribute("instructors", memberService.findInstructorsForSelection());
     }
 
 }

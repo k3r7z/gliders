@@ -25,6 +25,9 @@
 </head>
 <body>
     <div th:replace="~{fragments/navbar :: navbar}"></div>
-    <main layout:fragment="content"></main>
+    <div class="container mt-3">
+        <div th:replace="~{fragments/alerts :: alerts}"></div>
+        <main layout:fragment="content"></main>
+    </div>
 </body>
 </html>

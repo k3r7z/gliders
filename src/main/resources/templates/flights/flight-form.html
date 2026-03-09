@@ -9,21 +9,43 @@
 
                 <div class="col-md-6">
                     <label class="form-label">Aeronave</label>
-                    <select th:field="*{pilotInCommandId}" class="form-select bg-secondary text-white border-0">
-                        <option value="">Seleccionar...</option>
-                        <option th:each="pilot : ${pilots}" th:value="${pilot.id}" th:text="${pilot.name}"></option>
-                    </select>
-                </div>
-
-                <div class="col-md-6">
-                    <label class="form-label">Aeronave</label>
                     <select th:field="*{aircraftId}" class="form-select bg-secondary text-white border-0">
                         <option value="">Seleccionar...</option>
                         <option th:each="aircraft : ${aircrafts}" th:value="${aircraft.id}" th:text="${aircraft.registration}"></option>
                     </select>
                 </div>
 
+                <div class="col-md-6">
+                    <label class="form-label">Piloto</label>
+                    <select th:field="*{pilotInCommandId}" class="form-select bg-secondary text-white border-0">
+                        <option value="">Seleccionar...</option>
+                        <option th:each="pilot : ${pilots}" th:value="${pilot.id}" th:text="${pilot.fullName}"></option>
+                    </select>
+                </div>
+
+
             </div>
+
+            <div class="row g-3">
+
+                <div class="col-md-6">
+                    <label class="form-label">Instrutor</label>
+                    <select th:field="*{instructorId}" class="form-select bg-secondary text-white border-0">
+                        <option value="">Seleccionar...</option>
+                        <option th:each="instructor : ${instructors}" th:value="${instructor.id}" th:text="${instructor.fullName}"></option>
+                    </select>
+                </div>
+
+                <div class="col-md-6">
+                    <label class="form-label">Remolcador</label>
+                    <select th:field="*{towAirplaneId}" class="form-select bg-secondary text-white border-0">
+                        <option value="">Seleccionar...</option>
+                        <option th:each="aircraft : ${aircrafts}" th:value="${aircraft.id}" th:text="${aircraft.registration}"></option>
+                    </select>
+                </div>
+
+            </div>
+
 
             <div class="row">
 

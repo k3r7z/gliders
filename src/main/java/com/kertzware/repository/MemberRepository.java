@@ -26,4 +26,7 @@ public interface MemberRepository extends JpaRepository<Member, Long> {
      */
     @Query("SELECT DISTINCT qi.member FROM QualificationIssuance qi WHERE qi.qualification.name LIKE 'Piloto%'")
     List<Member> findAllPilots();
+
+    @Query("SELECT DISTINCT qi.member FROM QualificationIssuance qi WHERE qi.qualification.name LIKE 'Instructor%'")
+    List<Member> findInstructors();
 }

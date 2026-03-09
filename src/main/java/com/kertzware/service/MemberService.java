@@ -34,6 +34,15 @@ public class MemberService {
                 .toList();
     }
 
+    public List<MemberFormDTO> findInstructorsForSelection(){
+        return memberRepository.findInstructors().stream()
+                .map( member -> MemberFormDTO.builder()
+                        .id(member.getId())
+                        .fullName(member.getFirstName() + ' ' + member.getLastName())
+                        .build())
+                .toList();
+    }
+
     public MemberDTO getProfileByUsername(String username){
         Member member = memberRepository.findByUserUsername(username).
                 orElseThrow( () -> new EntityNotFoundException("No member found for user: " + username));
