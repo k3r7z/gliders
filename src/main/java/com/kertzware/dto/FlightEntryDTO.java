@@ -2,6 +2,8 @@ package com.kertzware.dto;
 
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.time.ZonedDateTime;
 
 @Data
@@ -15,9 +17,11 @@ public class FlightEntryDTO {
     @NotNull(message = "Debe ingresar el aeródromo de destino")
     private Long destinationId;
 
+    @DateTimeFormat
     @NotNull(message = "Debe ingresar la hora de inicio del vuelo")
     private ZonedDateTime startTime;
 
+    @DateTimeFormat
     @NotNull(message = "Debe ingresar la hora final del vuelo")
     private ZonedDateTime stopTime;
 

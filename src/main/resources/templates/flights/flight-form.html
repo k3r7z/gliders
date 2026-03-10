@@ -4,10 +4,10 @@
         layout:decorate="~{layout/main.html}">
 <body>
     <div layout:fragment="content" class="container">
-        <form th:action="@{vuelos/nuevo}" th:object="${flight}" method="post" class="card p-4 bg-dark text-white">
+        <form th:action="@{/vuelos/nuevo}" th:object="${flight}" method="post" class="card p-4 bg-dark text-white">
             <div class="row g-3">
 
-                <div class="col-md-6">
+                <div class="col-md-4">
                     <label class="form-label">Aeronave</label>
                     <select th:field="*{aircraftId}" class="form-select bg-secondary text-white border-0">
                         <option value="">Seleccionar...</option>
@@ -15,7 +15,15 @@
                     </select>
                 </div>
 
-                <div class="col-md-6">
+                <div class="col-md-4">
+                    <label class="form-label">Finalidad del vuelo</label>
+                    <select th:field="*{flightTypeId}" class="form-select bg-secondary text-white border-0">
+                        <option value="">Seleccionar...</option>
+                        <option th:each="type : ${flightTypes}" th:value="${type.id}" th:text="${type.name}"></option>
+                    </select>
+                </div>
+
+                <div class="col-md-4">
                     <label class="form-label">Piloto</label>
                     <select th:field="*{pilotInCommandId}" class="form-select bg-secondary text-white border-0">
                         <option value="">Seleccionar...</option>
@@ -26,7 +34,7 @@
 
             </div>
 
-            <div class="row g-3">
+            <div class="row g-3 mt-1">
 
                 <div class="col-md-6">
                     <label class="form-label">Instrutor</label>
@@ -47,7 +55,7 @@
             </div>
 
 
-            <div class="row">
+            <div class="row mt-1">
 
                 <div class="col-md-6">
                     <label class="form-label">Salida</label>
@@ -65,7 +73,7 @@
             </div>
 
 
-            <div class="row">
+            <div class="row mt-1">
 
                 <div class="col-md-6">
                     <label class="form-label">Destino</label>
@@ -76,13 +84,13 @@
                 </div>
 
                 <div class="col-md-6">
-                    <label class="form-label">Inicio (UTC-3)</label>
+                    <label class="form-label">Final (UTC-3)</label>
                     <input type="datetime-local" th:field="*{stopTime}" class="form-control bg-secondary text-white border-0">
                 </div>
 
             </div>
 
-            <div class="row">
+            <div class="row mt-1">
                 <div class="col-12 mt-4">
                     <button type="submit" class="btn btn-primary w-100">Registrar Vuelo</button>
                 </div>
