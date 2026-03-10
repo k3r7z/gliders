@@ -5,10 +5,10 @@ import com.kertzware.dto.FlightEntryDTO;
 import com.kertzware.dto.FlightTypeFormDTO;
 import com.kertzware.model.Aerodrome;
 import com.kertzware.model.Flight;
-import com.kertzware.model.FlightType;
 import com.kertzware.repository.*;
 import org.springframework.stereotype.Service;
 import java.time.Duration;
+import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
@@ -47,8 +47,11 @@ public class FlightService {
         flight.setFlightType( flightTypeRepository.getReferenceById(dto.getFlightTypeId()) );
         flight.setAircraft( aircraftRepository.getReferenceById(dto.getAircraftId()) );
         flight.setDeparture( aerodromeRepository.getReferenceById(dto.getDepartureId()) );
-        flight.setStartTime( dto.getStartTime() );
-        flight.setStopTime( dto.getStopTime() );
+
+        ZoneId zone = ZoneId.of("America/Argentina/Buenos_Aires");
+        flight.setStartTime(dto.getStartTime().atZone(zone).toOffsetDateTime().toZonedDateTime());
+        flight.setStopTime( dto.getStopTime().atZone(zone).toOffsetDateTime().toZonedDateTime() );
+
         flight.setDestination( aerodromeRepository.getReferenceById(dto.getDestinationId()) );
         flight.setPilotInCommand( memberRepository.getReferenceById(dto.getPilotInCommandId()) );
 

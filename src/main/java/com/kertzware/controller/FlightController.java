@@ -57,7 +57,7 @@ public class FlightController {
 
         flightService.saveFlight(flight);
         attributes.addFlashAttribute("successMessage", "Vuelo registrado exitosamente!");
-        return "redirect:/index?success";
+        return "redirect:/";
     }
 
     private void populateFormModel(Model model){
