@@ -5,95 +5,160 @@
 <body>
     <div layout:fragment="content" class="container">
         <form th:action="@{/vuelos/nuevo}" th:object="${flight}" method="post" class="card p-4 bg-dark text-white">
-            <div class="row g-3">
-
-                <div class="col-md-4">
-                    <label class="form-label">Aeronave</label>
-                    <select th:field="*{aircraftId}" class="form-select bg-secondary text-white border-0">
-                        <option value="">Seleccionar...</option>
-                        <option th:each="aircraft : ${aircrafts}" th:value="${aircraft.id}" th:text="${aircraft.registration}"></option>
-                    </select>
+            <div id="dynamicForm" class="carousel slide" data-bs-interval="false" data-bs-touch="false">
+                <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#dynamicForm" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                    <button type="button" data-bs-target="#dynamicForm" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                    <button type="button" data-bs-target="#dynamicForm" data-bs-slide-to="2" aria-label="Slide 3"></button>
                 </div>
 
-                <div class="col-md-4">
-                    <label class="form-label">Finalidad del vuelo</label>
-                    <select th:field="*{flightTypeId}" class="form-select bg-secondary text-white border-0">
-                        <option value="">Seleccionar...</option>
-                        <option th:each="type : ${flightTypes}" th:value="${type.id}" th:text="${type.name}"></option>
-                    </select>
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <div class="card bg-secondary text-white h-100 selection-card" id="airplaneCard">
+                                    <div class="card-body text-center">
+                                        <i class="fas fa-plane fa-3x mb-3"></i>
+                                        <h5 class="card-title">Avión</h5>
+                                        <button type="button" id="airplaneBtn" class="btn btn-primary stretched-link d-none">Seleccionar</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="card bg-secondary text-white h-100 selection-card" id="gliderCard">
+                                    <div class="card-body text-center">
+                                        <i class="fas fa-wind fa-3x mb-3"></i>
+                                        <h5 class="card-title">Planeador</h5>
+                                        <button type="button" id="gliderBtn" class="btn btn-primary stretched-link d-none">Seleccionar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <ul class="list-group">
+                                    <li class="list-group-item" th:each="aircraft : ${aircrafts}">
+                                        <div class="card">
+                                            <div class="row">
+                                                <div class="col-md-4">
+                                                    <img src="..." class="img-fluid rounded-start" alt="...">
+                                                </div>
+                                                <div class="col-md-8">
+                                                    <div class="card-body">
+                                                        <div class="card-title"
+                                                             th:text="${aircraft.registration}"
+                                                             th:attr="aircraft-id=${aircraft.id}, aircraft-type=${aircraft.type}">
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="carousel-item">
+                        <div class="row">
+                            <div class="col">
+
+                                <div class="card">
+
+                                </div>
+
+                                <label class="form-label">Finalidad del vuelo</label>
+                                <select th:field="*{flightTypeId}" class="form-select bg-secondary text-white border-0">
+                                    <option value="">Seleccionar...</option>
+                                    <option th:each="type : ${flightTypes}" th:value="${type.id}" th:text="${type.name}"></option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col">
+                                <label class="form-label">Piloto</label>
+                                <select th:field="*{pilotInCommandId}" class="form-select bg-secondary text-white border-0">
+                                    <option value="">Seleccionar...</option>
+                                    <option th:each="pilot : ${pilots}" th:value="${pilot.id}" th:text="${pilot.fullName}"></option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col">
+                                <label class="form-label">Instrutor</label>
+                                <select th:field="*{instructorId}" class="form-select bg-secondary text-white border-0">
+                                    <option value="">Seleccionar...</option>
+                                    <option th:each="instructor : ${instructors}" th:value="${instructor.id}" th:text="${instructor.fullName}"></option>
+                                </select>
+                            </div>
+
+
+                            <div class="row">
+                                <div class="col">
+                                    <label class="form-label">Remolcador</label>
+                                    <select th:field="*{towAirplaneId}" class="form-select bg-secondary text-white border-0">
+                                        <option value="">Seleccionar...</option>
+                                        <option th:each="aircraft : ${aircrafts}" th:value="${aircraft.id}" th:text="${aircraft.registration}"></option>
+                                    </select>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="carousel-item">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label class="form-label">Salida</label>
+                                <select th:field="*{departureId}" class="form-select bg-secondary text-white border-0">
+                                    <option value="">Seleccionar...</option>
+                                    <option th:each="aerodrome : ${aerodromes}" th:value="${aerodrome.id}" th:text="${aerodrome.name}"></option>
+                                </select>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label class="form-label">Inicio (UTC-3)</label>
+                                <input type="datetime-local" th:field="*{startTime}" class="form-control bg-secondary text-white border-0">
+                            </div>
+                        </div>
+
+
+                        <div class="row mt-1">
+                            <div class="col-md-6">
+                                <label class="form-label">Destino</label>
+                                <select th:field="*{destinationId}" class="form-select bg-secondary text-white border-0">
+                                    <option value="">Seleccionar...</option>
+                                    <option th:each="aerodrome : ${aerodromes}" th:value="${aerodrome.id}" th:text="${aerodrome.name}"></option>
+                                </select>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label class="form-label">Final (UTC-3)</label>
+                                <input type="datetime-local" th:field="*{stopTime}" class="form-control bg-secondary text-white border-0">
+                            </div>
+                        </div>
+
+                        <div class="row mt-1">
+                            <div class="col-12 mt-4">
+                                <button type="submit" class="btn btn-primary w-100">Registrar Vuelo</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
-                <div class="col-md-4">
-                    <label class="form-label">Piloto</label>
-                    <select th:field="*{pilotInCommandId}" class="form-select bg-secondary text-white border-0">
-                        <option value="">Seleccionar...</option>
-                        <option th:each="pilot : ${pilots}" th:value="${pilot.id}" th:text="${pilot.fullName}"></option>
-                    </select>
-                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#dynamicForm" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
 
-
-            </div>
-
-            <div class="row g-3 mt-1">
-
-                <div class="col-md-6">
-                    <label class="form-label">Instrutor</label>
-                    <select th:field="*{instructorId}" class="form-select bg-secondary text-white border-0">
-                        <option value="">Seleccionar...</option>
-                        <option th:each="instructor : ${instructors}" th:value="${instructor.id}" th:text="${instructor.fullName}"></option>
-                    </select>
-                </div>
-
-                <div class="col-md-6">
-                    <label class="form-label">Remolcador</label>
-                    <select th:field="*{towAirplaneId}" class="form-select bg-secondary text-white border-0">
-                        <option value="">Seleccionar...</option>
-                        <option th:each="aircraft : ${aircrafts}" th:value="${aircraft.id}" th:text="${aircraft.registration}"></option>
-                    </select>
-                </div>
-
-            </div>
-
-
-            <div class="row mt-1">
-
-                <div class="col-md-6">
-                    <label class="form-label">Salida</label>
-                    <select th:field="*{departureId}" class="form-select bg-secondary text-white border-0">
-                        <option value="">Seleccionar...</option>
-                        <option th:each="aerodrome : ${aerodromes}" th:value="${aerodrome.id}" th:text="${aerodrome.name}"></option>
-                    </select>
-                </div>
-
-                <div class="col-md-6">
-                    <label class="form-label">Inicio (UTC-3)</label>
-                    <input type="datetime-local" th:field="*{startTime}" class="form-control bg-secondary text-white border-0">
-                </div>
-
-            </div>
-
-
-            <div class="row mt-1">
-
-                <div class="col-md-6">
-                    <label class="form-label">Destino</label>
-                    <select th:field="*{destinationId}" class="form-select bg-secondary text-white border-0">
-                        <option value="">Seleccionar...</option>
-                        <option th:each="aerodrome : ${aerodromes}" th:value="${aerodrome.id}" th:text="${aerodrome.name}"></option>
-                    </select>
-                </div>
-
-                <div class="col-md-6">
-                    <label class="form-label">Final (UTC-3)</label>
-                    <input type="datetime-local" th:field="*{stopTime}" class="form-control bg-secondary text-white border-0">
-                </div>
-
-            </div>
-
-            <div class="row mt-1">
-                <div class="col-12 mt-4">
-                    <button type="submit" class="btn btn-primary w-100">Registrar Vuelo</button>
-                </div>
+                <button class="carousel-control-next" type="button" data-bs-target="#dynamicForm" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
             </div>
         </form>
         <script th:src="@{/script/script.js}" type="text/javascript"></script>
