@@ -28,6 +28,7 @@ public class AircraftService {
                 .map( aircraft -> AircraftFormDTO.builder()
                         .id(aircraft.getId())
                         .registration(aircraft.getRegistration())
+                        .type(aircraft.getAircraftType().getName())
                         .build()
                 ).toList();
     }

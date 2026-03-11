@@ -11,4 +11,5 @@ import lombok.Data;
 public class AircraftFormDTO {
     private Long id;
     private String registration;
+    private String type;
 }
