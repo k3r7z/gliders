@@ -29,7 +29,7 @@ public class SecurityConfig {
                     "/index",
                     "/login",
                     "/style/**",
-                    "/scrip/**",
+                    "/script/**",
                     "/image/**",
                     "/webjars/**",
                     "/contact").permitAll()
