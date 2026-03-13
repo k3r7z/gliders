@@ -28,8 +28,8 @@ public class SecurityConfig {
                     "/",
                     "/index",
                     "/login",
-                    "/css/**",
-                    "/js/**",
+                    "/style/**",
+                    "/scrip/**",
                     "/image/**",
                     "/webjars/**",
                     "/contact").permitAll()
