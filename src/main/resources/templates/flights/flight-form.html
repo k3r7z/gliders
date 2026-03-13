@@ -4,12 +4,17 @@
         layout:decorate="~{layout/main.html}">
 <body>
     <div layout:fragment="content" class="container">
-        <form th:action="@{/vuelos/nuevo}" th:object="${flight}" method="post" class="card p-4 bg-dark text-white">
+        <form id="flightForm"
+              th:action="@{/vuelos/nuevo}"
+              th:object="${flight}"
+              method="post"
+              class="card p-4 bg-dark text-white needs-validation"
+              novalidate>
             <div class="row mb-3">
                 <div class="col">
                     <div class="input-group">
                         <label class="input-group-text" for="aircraftId">Aeronave</label>
-                        <select id="aircraftId" th:field="*{aircraftId}" class="form-select">
+                        <select id="aircraftId" th:field="*{aircraftId}" class="form-select" required>
                             <option value="" selected>Seleccionar...</option>
                             <option th:each="aircraft : ${aircrafts}"
                                     th:value="${aircraft.id}"
@@ -17,7 +22,9 @@
                                     th:data-type="${aircraft.type}">
                             </option>
                         </select>
-                        <label class="input-group-text" id="aircraftType" for="aircraftId">Tipo de aeronave</label>
+                        <div class="invalid-feedback">
+                            Ingresar aeronave
+                        </div>
                     </div>
                 </div>
             </div>
@@ -26,12 +33,15 @@
                 <div class="col">
                     <div class="input-group">
                         <label class="input-group-text" for="pilotInCommand">Piloto</label>
-                        <select th:field="*{pilotInCommandId}" id="pilotInCommand" class="form-select">
+                        <select th:field="*{pilotInCommandId}" id="pilotInCommand" class="form-select" required>
                             <option value="">Seleccionar...</option>
                             <option th:each="pilot : ${pilots}"
                                     th:value="${pilot.id}"
                                     th:text="${pilot.fullName}"></option>
                         </select>
+                        <div class="invalid-feedback">
+                            Ingresar piloto
+                        </div>
                     </div>
                 </div>
             </div>
@@ -52,12 +62,15 @@
                 <div class="col">
                     <div class="input-group">
                         <label class="input-group-text" for="flightTypeId">Finalidad del vuelo</label>
-                        <select th:field="*{flightTypeId}" id="flightTypeId" class="form-select">
+                        <select th:field="*{flightTypeId}" id="flightTypeId" class="form-select" required>
                             <option value="">Seleccionar...</option>
                             <option th:each="type : ${flightTypes}"
                                     th:value="${type.id}"
                                     th:text="${type.name}"></option>
                         </select>
+                        <div class="invalid-feedback">
+                            Ingresar finalidad del vuelo
+                        </div>
                     </div>
                 </div>
             </div>
@@ -78,12 +91,22 @@
                 <div class="col">
                     <div class="input-group">
                         <label class="input-group-text" for="departureId">Salida</label>
-                        <select th:field="*{departureId}" id="departureId" class="form-select">
+                        <select th:field="*{departureId}" id="departureId" class="form-select" required>
                             <option value="">Seleccionar...</option>
                             <option th:each="aerodrome : ${aerodromes}" th:value="${aerodrome.id}" th:text="${aerodrome.name}"></option>
                         </select>
+                        <div class="invalid-feedback">
+                            Ingresar aeródromo de salida
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="input-group">
                         <label class="input-group-text" for="startTime">Inicio (local)</label>
-                        <input id="startTime" type="datetime-local" th:field="*{startTime}" class="form-control">
+                        <input id="startTime" type="datetime-local" th:field="*{startTime}" class="form-control" required>
+                        <div class="invalid-feedback">
+                            Ingresar el horario de salida
+                        </div>
                     </div>
                 </div>
             </div>
@@ -93,12 +116,22 @@
                 <div class="col">
                     <div class="input-group">
                         <label class="input-group-text" for="destinationId">Destino</label>
-                        <select th:field="*{destinationId}" id="destinationId" class="form-select">
+                        <select th:field="*{destinationId}" id="destinationId" class="form-select" required>
                             <option value="">Seleccionar...</option>
                             <option th:each="aerodrome : ${aerodromes}" th:value="${aerodrome.id}" th:text="${aerodrome.name}"></option>
                         </select>
+                        <div class="invalid-feedback">
+                            Ingresar aeródromo de destino
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="input-group">
                         <label class="input-group-text" for="stopTime">Final (local)</label>
-                        <input type="datetime-local" id="stopTime" th:field="*{stopTime}" class="form-control">
+                        <input type="datetime-local" id="stopTime" th:field="*{stopTime}" class="form-control" required>
+                        <div class="invalid-feedback">
+                            Ingresar horario de parada
+                        </div>
                     </div>
                 </div>
             </div>
