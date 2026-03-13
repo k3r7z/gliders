@@ -5,143 +5,106 @@
 <body>
     <div layout:fragment="content" class="container">
         <form th:action="@{/vuelos/nuevo}" th:object="${flight}" method="post" class="card p-4 bg-dark text-white">
-            <div id="dynamicForm" class="accordion">
-
-                <div class="accordion-item">
-
-                    <h2 class="accordion-header">
-                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#select-aircraft" aria-expanded="true" aria-controls="select-aircraft">
-                            Seleccionar aeronave
-                        </button>
-                    </h2>
-
-                    <div id="select-aircraft" class="accordion-collapse collapse show" data-bs-parent="#dynamicForm">
-                        <div class="accordion-body">
-                            <select id="aircraftId"  th:field="*{aircraftId}" class="form-select">
-                                <option value="" selected>Seleccionar...</option>
-                                <option th:each="aircraft : ${aircrafts}"
-                                        th:value="${aircraft.id}"
-                                        th:text="${aircraft.registration}"
-                                        th:attr="aircraft-type=${aircraft.type}">
-                                </option>
-                            </select>
-                        </div>
+            <div class="row mb-3">
+                <div class="col">
+                    <div class="input-group">
+                        <label class="input-group-text" for="aircraftId">Aeronave</label>
+                        <select id="aircraftId" th:field="*{aircraftId}" class="form-select">
+                            <option value="" selected>Seleccionar...</option>
+                            <option th:each="aircraft : ${aircrafts}"
+                                    th:value="${aircraft.id}"
+                                    th:text="${aircraft.registration}"
+                                    th:attr="aircraft-type=${aircraft.type}">
+                            </option>
+                        </select>
                     </div>
                 </div>
+            </div>
 
-                <div class="accordion-item">
-                    <h2 class="accordion-header">
-                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#flight-specs" aria-expanded="true" aria-controls="flight-specs">
-                            Características del vuelo
-                        </button>
-                    </h2>
-
-                    <div id="flight-specs" class="accordion-collapse collapse" data-bs-parent="#dynamicForm">
-                        <div class="accordion-body">
-                            <div class="row">
-                                <div class="col">
-                                    <label class="form-label">Piloto</label>
-                                    <select th:field="*{pilotInCommandId}" class="form-select bg-secondary text-white border-0">
-                                        <option value="">Seleccionar...</option>
-                                        <option th:each="pilot : ${pilots}"
-                                                th:value="${pilot.id}"
-                                                th:text="${pilot.fullName}"></option>
-                                    </select>
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col">
-                                    <label class="form-label">Instrutor</label>
-                                    <select th:field="*{instructorId}" class="form-select bg-secondary text-white border-0">
-                                        <option value="">Seleccionar...</option>
-                                        <option th:each="instructor : ${instructors}" th:value="${instructor.id}" th:text="${instructor.fullName}"></option>
-                                    </select>
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col">
-                                    <label class="form-label">Finalidad del vuelo</label>
-                                    <select th:field="*{flightTypeId}" class="form-select bg-secondary text-white border-0">
-                                        <option value="">Seleccionar...</option>
-                                        <option th:each="type : ${flightTypes}"
-                                                th:value="${type.id}"
-                                                th:text="${type.name}"></option>
-                                    </select>
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col">
-                                    <label class="form-label">Remolcador</label>
-                                    <select th:field="*{towAirplaneId}" class="form-select bg-secondary text-white border-0">
-                                        <option value="">Seleccionar...</option>
-                                        <option th:each="aircraft : ${aircrafts}" th:value="${aircraft.id}" th:text="${aircraft.registration}"></option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
+            <div class="row mb-3">
+                <div class="col">
+                    <div class="input-group">
+                        <label class="input-group-text" for="pilotInCommand">Piloto</label>
+                        <select th:field="*{pilotInCommandId}" id="pilotInCommand" class="form-select">
+                            <option value="">Seleccionar...</option>
+                            <option th:each="pilot : ${pilots}"
+                                    th:value="${pilot.id}"
+                                    th:text="${pilot.fullName}"></option>
+                        </select>
                     </div>
                 </div>
+            </div>
 
-                <div class="accordion-item">
-                    <h2 class="accordion-header">
-                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#schedule" aria-expanded="true" aria-controls="schedule">
-                            Itinerario
-                        </button>
-                    </h2>
-
-                    <div id="schedule" class="accordion-collapse collapse" data-bs-parent="#dynamicForm">
-                        <div class="accordion-body">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <label class="form-label">Salida</label>
-                                    <select th:field="*{departureId}" class="form-select bg-secondary text-white border-0">
-                                        <option value="">Seleccionar...</option>
-                                        <option th:each="aerodrome : ${aerodromes}" th:value="${aerodrome.id}" th:text="${aerodrome.name}"></option>
-                                    </select>
-                                </div>
-
-                                <div class="col-md-6">
-                                    <label class="form-label">Inicio (UTC-3)</label>
-                                    <input type="datetime-local" th:field="*{startTime}" class="form-control bg-secondary text-white border-0">
-                                </div>
-                            </div>
-
-
-                            <div class="row mt-1">
-                                <div class="col-md-6">
-                                    <label class="form-label">Destino</label>
-                                    <select th:field="*{destinationId}" class="form-select bg-secondary text-white border-0">
-                                        <option value="">Seleccionar...</option>
-                                        <option th:each="aerodrome : ${aerodromes}" th:value="${aerodrome.id}" th:text="${aerodrome.name}"></option>
-                                    </select>
-                                </div>
-
-                                <div class="col-md-6">
-                                    <label class="form-label">Final (UTC-3)</label>
-                                    <input type="datetime-local" th:field="*{stopTime}" class="form-control bg-secondary text-white border-0">
-                                </div>
-                            </div>
-                        </div>
+            <div class="row mb-3">
+                <div class="col">
+                    <div class="input-group">
+                        <label class="input-group-text" for="instructorId">Instrutor</label>
+                        <select th:field="*{instructorId}" id="instructorId" class="form-select">
+                            <option value="">Seleccionar...</option>
+                            <option th:each="instructor : ${instructors}" th:value="${instructor.id}" th:text="${instructor.fullName}"></option>
+                        </select>
                     </div>
                 </div>
+            </div>
 
-                <div class="accordion-item">
-                    <h2 class="accordion-header">
-                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#confirmation" aria-expanded="true" aria-controls="confirmation">
-                            Confirmar
-                        </button>
-                    </h2>
-
-                    <div id="confirmation" class="accordion-collapse collapse" data-bs-parent="#dynamicForm">
-                        <div class="row">
-                            <div class="col">
-                                <button type="submit" class="btn btn-primary w-100">Registrar Vuelo</button>
-                            </div>
-                        </div>
+            <div class="row mb-3">
+                <div class="col">
+                    <div class="input-group">
+                        <label class="input-group-text" for="flightTypeId">Finalidad del vuelo</label>
+                        <select th:field="*{flightTypeId}" id="flightTypeId" class="form-select">
+                            <option value="">Seleccionar...</option>
+                            <option th:each="type : ${flightTypes}"
+                                    th:value="${type.id}"
+                                    th:text="${type.name}"></option>
+                        </select>
                     </div>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <div class="col">
+                    <div class="input-group">
+                        <label class="input-group-text" for="towAirplaneId">Remolcador</label>
+                        <select th:field="*{towAirplaneId}" id="towAirplaneId" class="form-select">
+                            <option value="">Seleccionar...</option>
+                            <option th:each="aircraft : ${aircrafts}" th:value="${aircraft.id}" th:text="${aircraft.registration}"></option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <div class="col">
+                    <div class="input-group">
+                        <label class="input-group-text" for="departureId">Salida</label>
+                        <select th:field="*{departureId}" id="departureId" class="form-select">
+                            <option value="">Seleccionar...</option>
+                            <option th:each="aerodrome : ${aerodromes}" th:value="${aerodrome.id}" th:text="${aerodrome.name}"></option>
+                        </select>
+                        <label class="input-group-text" for="startTime">Inicio (UTC-3)</label>
+                        <input id="startTime" type="datetime-local" th:field="*{startTime}" class="form-control">
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="row mb-3">
+                <div class="col">
+                    <div class="input-group">
+                        <label class="input-group-text" for="destinationId">Destino</label>
+                        <select th:field="*{destinationId}" id="destinationId" class="form-select">
+                            <option value="">Seleccionar...</option>
+                            <option th:each="aerodrome : ${aerodromes}" th:value="${aerodrome.id}" th:text="${aerodrome.name}"></option>
+                        </select>
+                        <label class="input-group-text" for="stopTime">Final (UTC-3)</label>
+                        <input type="datetime-local" id="stopTime" th:field="*{stopTime}" class="form-control">
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    <button type="submit" class="btn btn-primary w-100">Registrar Vuelo</button>
                 </div>
             </div>
         </form>
