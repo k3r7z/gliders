@@ -14,9 +14,10 @@
                             <option th:each="aircraft : ${aircrafts}"
                                     th:value="${aircraft.id}"
                                     th:text="${aircraft.registration}"
-                                    th:attr="aircraft-type=${aircraft.type}">
+                                    th:data-type="${aircraft.type}">
                             </option>
                         </select>
+                        <label class="input-group-text" id="aircraftType" for="aircraftId">Tipo de aeronave</label>
                     </div>
                 </div>
             </div>
@@ -61,7 +62,7 @@
                 </div>
             </div>
 
-            <div class="row mb-3">
+            <div class="row mb-3 collapse" id="towAirplaneSection">
                 <div class="col">
                     <div class="input-group">
                         <label class="input-group-text" for="towAirplaneId">Remolcador</label>
@@ -81,7 +82,7 @@
                             <option value="">Seleccionar...</option>
                             <option th:each="aerodrome : ${aerodromes}" th:value="${aerodrome.id}" th:text="${aerodrome.name}"></option>
                         </select>
-                        <label class="input-group-text" for="startTime">Inicio (UTC-3)</label>
+                        <label class="input-group-text" for="startTime">Inicio (local)</label>
                         <input id="startTime" type="datetime-local" th:field="*{startTime}" class="form-control">
                     </div>
                 </div>
@@ -96,7 +97,7 @@
                             <option value="">Seleccionar...</option>
                             <option th:each="aerodrome : ${aerodromes}" th:value="${aerodrome.id}" th:text="${aerodrome.name}"></option>
                         </select>
-                        <label class="input-group-text" for="stopTime">Final (UTC-3)</label>
+                        <label class="input-group-text" for="stopTime">Final (local)</label>
                         <input type="datetime-local" id="stopTime" th:field="*{stopTime}" class="form-control">
                     </div>
                 </div>
