@@ -12,9 +12,6 @@ public class Flight {
     @Id
     private Long id;
 
-    @Column(nullable = false)
-    private Long code;
-
     @ManyToOne
     private FlightType flightType;
 

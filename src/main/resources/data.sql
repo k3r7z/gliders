@@ -150,20 +150,20 @@ INSERT INTO role_record (user_id, role_id, since, until) VALUES
 (2, 1, '2026-03-03', NULL),
 (2,  4, '2026-03-01', NULL);
 
-INSERT INTO flight (code, start_time, stop_time, aircraft_id, departure_id, destination_id, flight_type_id, instructor_id, pilot_in_command_id, tow_airplane_id)
-VALUES (1001, '2026-03-03T09:00:00-03:00', '2026-03-03T10:00:00-03:00', 1, 1, 1, 21, NULL, 1, NULL);
+INSERT INTO flight (start_time, stop_time, aircraft_id, departure_id, destination_id, flight_type_id, instructor_id, pilot_in_command_id, tow_airplane_id)
+VALUES ('2026-03-03T09:00:00-03:00', '2026-03-03T10:00:00-03:00', 1, 1, 1, 21, NULL, 1, NULL);
 
-INSERT INTO flight (code, start_time, stop_time, aircraft_id, departure_id, destination_id, flight_type_id, instructor_id, pilot_in_command_id, tow_airplane_id)
-VALUES (1002, '2026-03-03T11:00:00-03:00', '2026-03-03T12:00:00-03:00', 1, 1, 1, 12, 2, 1, NULL);
+INSERT INTO flight (start_time, stop_time, aircraft_id, departure_id, destination_id, flight_type_id, instructor_id, pilot_in_command_id, tow_airplane_id)
+VALUES ('2026-03-03T11:00:00-03:00', '2026-03-03T12:00:00-03:00', 1, 1, 1, 12, 2, 1, NULL);
 
-INSERT INTO flight (code, start_time, stop_time, aircraft_id, departure_id, destination_id, flight_type_id, instructor_id, pilot_in_command_id, tow_airplane_id)
-VALUES (1003, '2026-03-03T14:00:00-03:00', '2026-03-03T14:45:00-03:00', 3, 1, 1, 21, NULL, 1, 2);
+INSERT INTO flight (start_time, stop_time, aircraft_id, departure_id, destination_id, flight_type_id, instructor_id, pilot_in_command_id, tow_airplane_id)
+VALUES ('2026-03-03T14:00:00-03:00', '2026-03-03T14:45:00-03:00', 3, 1, 1, 21, NULL, 1, 2);
 
-INSERT INTO flight (code, start_time, stop_time, aircraft_id, departure_id, destination_id, flight_type_id, instructor_id, pilot_in_command_id, tow_airplane_id)
-VALUES (1004, '2026-03-03T16:00:00-03:00', '2026-03-03T17:00:00-03:00', 3, 1, 1, 12, 2, 1, 2);
+INSERT INTO flight (start_time, stop_time, aircraft_id, departure_id, destination_id, flight_type_id, instructor_id, pilot_in_command_id, tow_airplane_id)
+VALUES ( '2026-03-03T16:00:00-03:00', '2026-03-03T17:00:00-03:00', 3, 1, 1, 12, 2, 1, 2);
 
-INSERT INTO flight (code, start_time, stop_time, aircraft_id, departure_id, destination_id, flight_type_id, instructor_id, pilot_in_command_id, tow_airplane_id)
-VALUES (1005, '2025-09-21T17:25:00-03:00', '2025-09-21T18:13:00-03:00', 1, 1, 9, 21, NULL, 1, NULL);
+INSERT INTO flight (start_time, stop_time, aircraft_id, departure_id, destination_id, flight_type_id, instructor_id, pilot_in_command_id, tow_airplane_id)
+VALUES ( '2025-09-21T17:25:00-03:00', '2025-09-21T18:13:00-03:00', 1, 1, 9, 21, NULL, 1, NULL);
 
-INSERT INTO flight (code, start_time, stop_time, aircraft_id, departure_id, destination_id, flight_type_id, instructor_id, pilot_in_command_id, tow_airplane_id)
-VALUES (1006, '2025-09-21T19:00:00-03:00', '2025-09-21T19:18:00-03:00', 1, 9, 1, 21, NULL, 1, NULL);
+INSERT INTO flight (start_time, stop_time, aircraft_id, departure_id, destination_id, flight_type_id, instructor_id, pilot_in_command_id, tow_airplane_id)
+VALUES ('2025-09-21T19:00:00-03:00', '2025-09-21T19:18:00-03:00', 1, 9, 1, 21, NULL, 1, NULL);

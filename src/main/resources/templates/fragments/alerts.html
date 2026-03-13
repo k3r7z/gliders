@@ -1,0 +1,14 @@
+<div th:fragment="alerts" class="container">
+    <div class="row">
+        <div class="col">
+            <div th:if="${successMessage}"  class="alert alert-success alert-dismissible fade show" role="alert">
+                <span th:text="${successMessage}">Mensaje de éxito</span>
+                <button type="submit" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            <div th:if="${errorMessage}" class="alert alert-danger alert-dismissible fade show" role="alert">
+                <span th:text="${errorMessage}" >Mensaje de error</span>
+                <button type="submit" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        </div>
+    </div>
+</div>

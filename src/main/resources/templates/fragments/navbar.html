@@ -60,6 +60,7 @@
                     </div>
                     <div class="d-flex align-items-center" sec:authorize="isAuthenticated()">
                         <span class="text-white me-3">Hola, <span sec:authentication="name">Usuario</span>!</span>
+                        <a th:href="@{/vuelos/nuevo}" class="btn btn-outline-secondary btn-sm me-2">REGISTRAR VUELO</a>
                         <form method="post" th:action="@{/logout}">
                             <button type="submit" class="btn btn-outline-danger btn-sm">Salir</button>
                         </form>

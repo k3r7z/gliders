@@ -23,9 +23,7 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
             .authorizeHttpRequests(auth -> auth
-                        // 1. Allow internal forwards to Thymeleaf templates
                .dispatcherTypeMatchers(DispatcherType.FORWARD, DispatcherType.ERROR).permitAll()
-                // 2. Publicly accessible paths
                 .requestMatchers(
                     "/",
                     "/index",
@@ -36,12 +34,9 @@ public class SecurityConfig {
                     "/webjars/**",
                     "/contact").permitAll()
                 .requestMatchers("/h2-console/**").permitAll()
-                        // 3. Everything else requires login
                         .anyRequest().authenticated()
                 )
-                // H2 console runs in a frame; Spring Security blocks frames by default
                 .headers(headers -> headers.frameOptions(frame -> frame.sameOrigin()))
-                // Disable CSRF for the console so you can log into it
                 .csrf(csrf -> csrf.ignoringRequestMatchers("/h2-console/**"))
                 .formLogin(form -> form
                         .loginPage("/login")

@@ -38,3 +38,7 @@ body {
     letter-spacing: 2px;
     font-family: 'Oswald', sans-serif;
 }
+
+.input-group-text {
+    width: 200px;
+}

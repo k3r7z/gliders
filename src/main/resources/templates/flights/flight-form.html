@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html
+        xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+        layout:decorate="~{layout/main.html}">
+<body>
+    <div layout:fragment="content" class="container">
+        <form id="flightForm"
+              th:action="@{/vuelos/nuevo}"
+              th:object="${flight}"
+              method="post"
+              class="card p-4 bg-dark text-white needs-validation"
+              novalidate>
+            <div class="row mb-3">
+                <div class="col">
+                    <div class="input-group">
+                        <label class="input-group-text" for="aircraftid">Aeronave</label>
+                        <select id="aircraftid"
+                                class="form-select"
+                                required
+                                th:field="*{aircraftId}"
+                                th:classappend="${#fields.hasErrors('aircraftId')} ? 'is-invalid' : ''">
+                            <option value="" selected>Seleccionar...</option>
+                            <option th:each="aircraft : ${aircrafts}"
+                                    th:value="${aircraft.id}"
+                                    th:text="${aircraft.registration}"
+                                    th:data-type="${aircraft.type}">
+                            </option>
+                        </select>
+                        <div class="invalid-feedback">
+                            <span th:if="${#fields.hasErrors('aircraftId')}" th:errors="*{aircraftId}"></span>
+                            <span th:if="${!#fields.hasErrors('aircraftId')}">Ingresar aeronave</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <div class="col">
+                    <div class="input-group">
+                        <label class="input-group-text" for="pilotInCommand">Piloto</label>
+                        <select th:field="*{pilotInCommandId}"
+                                th:classappend="${#fields.hasErrors('pilotInCommandId')} ? 'is-invalid' : ''"
+                                id="pilotInCommand"
+                                class="form-select"
+                                required>
+                            <option value="">Seleccionar...</option>
+                            <option th:each="pilot : ${pilots}"
+                                    th:value="${pilot.id}"
+                                    th:text="${pilot.fullName}"></option>
+                        </select>
+                        <div class="invalid-feedback">
+                            <span th:if="${#fields.hasErrors('pilotInCommandId')}" th:errors="*{pilotInCommandId}"></span>
+                            <span th:if="${!#fields.hasErrors('pilotInCommandId')}">Ingresar piloto</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <div class="col">
+                    <div class="input-group">
+                        <label class="input-group-text" for="instructorId">Instrutor</label>
+                        <select th:field="*{instructorId}"
+                                id="instructorId"
+                                th:classappend="${#fields.hasErrors('instructorId')} ? 'is-invalid' : ''"
+                                class="form-select">
+                            <option value="">Seleccionar...</option>
+                            <option th:each="instructor : ${instructors}" th:value="${instructor.id}" th:text="${instructor.fullName}"></option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <div class="col">
+                    <div class="input-group">
+                        <label class="input-group-text" for="flightTypeId">Finalidad del vuelo</label>
+                        <select id="flightTypeId"
+                                th:field="*{flightTypeId}"
+                                th:classappend="${#fields.hasErrors('flightTypeId')} ? 'is-invalid' : ''"
+                                class="form-select"
+                                required>
+                            <option value="">Seleccionar...</option>
+                            <option th:each="type : ${flightTypes}"
+                                    th:value="${type.id}"
+                                    th:text="${type.name}"></option>
+                        </select>
+                        <div class="invalid-feedback">
+                            <span th:if="${#fields.hasErrors('flightTypeId')}" th:errors="*{flightTypeId}"></span>
+                            <span th:if="${!#fields.hasErrors('flightTypeId')}">Ingresar finalidad del vuelo</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mb-3 collapse" id="towAirplaneSection">
+                <div class="col">
+                    <div class="input-group">
+                        <label class="input-group-text" for="towAirplaneId">Remolcador</label>
+                        <select id="towAirplaneId"
+                                th:field="*{towAirplaneId}"
+                                class="form-select">
+                            <option value="">Seleccionar...</option>
+                            <option th:each="aircraft : ${aircrafts}" th:value="${aircraft.id}" th:text="${aircraft.registration}"></option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <div class="col">
+                    <div class="input-group">
+                        <label class="input-group-text" for="departureId">Salida</label>
+                        <select id="departureId"
+                                class="form-select"
+                                required
+                                th:field="*{departureId}"
+                                th:classappend="${#fields.hasErrors('departureId')} ? 'is-invalid' : ''">
+                            <option value="">Seleccionar...</option>
+                            <option th:each="aerodrome : ${aerodromes}" th:value="${aerodrome.id}" th:text="${aerodrome.name}"></option>
+                        </select>
+                        <div class="invalid-feedback">
+                            <span th:if="${#fields.hasErrors('departureId')}" th:errors="*{departureId}"></span>
+                            <span th:if="${!#fields.hasErrors('departureId')}">Ingresar aeródromo de salida</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="input-group">
+                        <label class="input-group-text" for="startTime">Inicio (local)</label>
+                        <input type="datetime-local"
+                                id="startTime"
+                               class="form-control"
+                               required
+                               th:field="*{startTime}"
+                               th:classappend="${#fields.hasErrors('startTime')} ? 'is-invalid' : ''">
+                        <div class="invalid-feedback">
+                            <span th:if="${#fields.hasErrors('startTime')}" th:errors="*{startTime}"></span>
+                            <span th:if="${!#fields.hasErrors('startTime')}">Ingresar horario de salida</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="row mb-3">
+                <div class="col">
+                    <div class="input-group">
+                        <label class="input-group-text" for="destinationId">Destino</label>
+                        <select id="destinationId"
+                                class="form-select"
+                                required
+                                th:field="*{destinationId}"
+                                th:classappend="${#fields.hasErrors('destinationId')} ? 'is-invalid' : ''">
+                            <option value="">Seleccionar...</option>
+                            <option th:each="aerodrome : ${aerodromes}" th:value="${aerodrome.id}" th:text="${aerodrome.name}"></option>
+                        </select>
+                        <div class="invalid-feedback">
+                            <span th:if="${#fields.hasErrors('destinationId')}" th:errors="*{destinationId}"></span>
+                            <span th:if="${!#fields.hasErrors('destinationId')}">Ingresar aeródromo de salida</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="input-group">
+                        <label class="input-group-text" for="stopTime">Final (local)</label>
+                        <input id="stopTime"
+                               class="form-control"
+                               type="datetime-local"
+                               required
+                               th:field="*{stopTime}"
+                               th:classappend="${#fields.hasErrors('stopTime')} ? 'is-invalid' : ''">
+                        <div class="invalid-feedback">
+                            <span th:if="${#fields.hasErrors('stopTime')}" th:errors="*{stopTime}"></span>
+                            <span th:if="${!#fields.hasErrors('stopTime')}">Ingresar horario de llegada</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    <button type="submit" class="btn btn-primary w-100">Registrar Vuelo</button>
+                </div>
+            </div>
+        </form>
+        <script th:src="@{/script/script.js}" type="text/javascript"></script>
+    </div>
+</body>
+</html>
