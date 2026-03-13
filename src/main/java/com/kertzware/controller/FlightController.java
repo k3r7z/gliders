@@ -51,7 +51,7 @@ public class FlightController {
         if(result.hasErrors()){
             populateFormModel(model);
             System.out.println(flight);
-            attributes.addFlashAttribute("errorMessage", "Ocurrió un error al intentar registrar el vuelo");
+            model.addAttribute("errorMessage", "Ocurrió un error al intentar registrar el vuelo");
             return "flights/flight-form";
         }
 

@@ -15,6 +15,10 @@ let towAirplaneSection;
 let towSectionCollapse;
 let aircraftTypeInput;
 let flightForm;
+let departureAerodromeInput;
+let destinationAerodromeInput;
+let startTimeInput;
+let stopTimeInput;
 
 /**
  * Load the main elements, constants and link events once the DOM is loaded
@@ -26,6 +30,10 @@ document.addEventListener("DOMContentLoaded", () => {
     towAirplaneSelect = document.getElementById("towAirplaneId");
     towAirplaneSection = document.getElementById("towAirplaneSection");
     aircraftTypeInput = document.getElementById("aircraftType");
+    departureAerodromeInput = document.getElementById("destinationId");
+    destinationAerodromeInput = document.getElementById("destinationId");
+    startTimeInput = document.getElementById("startTime");
+    stopTimeInput = document.getElementById("stopTime");
     towSectionCollapse = new bootstrap.Collapse(towAirplaneSection, {toggle: false});
 
     // Start linking event listeners
@@ -37,12 +45,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
 function validateForm(event) {
     if (!flightForm.checkValidity()){
-        console.log("Inválido!");
         event.preventDefault();
         event.stopPropagation();
     }
-    else
-        console.log("Válido!");
 
     flightForm.classList.add("was-validated");
 }
