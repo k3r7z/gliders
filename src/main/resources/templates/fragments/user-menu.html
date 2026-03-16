@@ -1,0 +1,37 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="es">
+<body>
+
+<div th:fragment="menu">
+    <div class="d-flex align-items-center" sec:authorize="isAnonymous()">
+        <a th:href="@{/login}" class="btn btn-outline-light btn-sm me-2">Ingresar</a>
+    </div>
+
+    <div class="dropdown" sec:authorize="isAuthenticated()">
+        <button class="btn btn-outline-light btn-sm dropdown-toggle"
+                type="button"
+                id="userMenuButton"
+                data-bs-toggle="dropdown"
+                aria-expanded="false">
+            Hola, <span sec:authentication="name">Usuario</span>!
+        </button>
+
+        <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end" aria-labelledby="userMenuButton">
+            <li><h6 class="dropdown-header">Mi Cuenta</h6></li>
+            <li><a class="dropdown-item" th:href="@{/profile}">Ver Perfil</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><h6 class="dropdown-header">Administración</h6></li>
+            <li><a class="dropdown-item" th:href="@{/vuelos/nuevo}">Registrar Vuelo</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li>
+                <form method="post" th:action="@{/logout}" id="logoutForm">
+                    <button type="submit" class="dropdown-item text-danger">Salir</button>
+                </form>
+            </li>
+        </ul>
+    </div>
+</div>
+
+</body>
+</html>
