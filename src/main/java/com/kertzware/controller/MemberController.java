@@ -31,6 +31,6 @@ public class MemberController {
     public String members(Model model, Principal principal){
         List<Member> members = memberService.findAll();
         model.addAttribute("members", members);
-        return "members/members-list";
+        return "members/index";
     }
 }
