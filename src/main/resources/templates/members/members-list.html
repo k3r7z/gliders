@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html
+        xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+        layout:decorate="~{layout/main.html}" lang="es">
+<body>
+    <div layout:fragment="content" class="container">
+        <div class="card">
+            <div class="card-body">
+                <div class="d-flex justify-content-between mb-3">
+                    <div>
+                        <h3 class="text-">Listado de Socios</h3>
+                    </div>
+                    <div class="d-flex flex-column justify-content-center">
+                        <a th:href="@{/socios/nuevo}" class="btn btn-sm btn-outline-info">
+                            <i class="fas fa-plus"></i>
+                            Nuevo Socio
+                        </a>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col">
+                        <table class="table text-center">
+                            <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Nombre</th>
+                                <th scope="col">Socio desde</th>
+                                <th scope="col">Teléfono</th>
+                                <th scope="col">Acciones</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="member : ${members}">
+                                <th scope="row" th:text="${member.memberId}"></th>
+                                <td th:text="${member.getFirstName()} + ' ' + ${member.getLastName()}"></td>
+                                <td th:text="${member.getSignUpDate()}"></td>
+                                <td th:text="${member.getPhone()}"></td>
+                                <td class="text-center">
+                                    <div class="btn-group" role="group">
+                                        <a th:href="@{/socios/ver/{id}(id=${member.id})}" class="btn btn-sm btn-outline-secondary">
+                                            <i class="fas fa-eye"></i>
+                                        </a>
+                                        <a th:href="@{/socios/editar/{id}(id=${member.id})}" class="btn btn-sm btn-outline-primary">
+                                            <i class="fas fa-edit"></i>
+                                        </a>
+                                        <a th:href="@{/socios/eliminar/{id}(id = ${member.id})}" class="btn btn-sm btn-outline-danger">
+                                            <i class="fas fa-trash"></i>
+                                        </a>
+                                    </div>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+</body>
+</html>

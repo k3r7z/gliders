@@ -21,6 +21,10 @@ public class MemberService {
         this.flightService = flightService;
     }
 
+    public List<Member> findAll() {
+        return memberRepository.findAll();
+    }
+
     /**
      * Returns a list of all club pilots available for form selection
      * @return the list of DTOs
