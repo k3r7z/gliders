@@ -26,6 +26,16 @@ public class MemberService {
     }
 
     /**
+     * Deletes a member using its id
+     * @param id member's id
+     */
+    public void deleteMemberById(Long id){
+        if(!memberRepository.existsById(id))
+            throw new EntityNotFoundException("No se encontró al socio con ID " + id);
+        memberRepository.deleteById(id);
+    }
+
+    /**
      * Returns a list of all club pilots available for form selection
      * @return the list of DTOs
      */
