@@ -6,9 +6,11 @@ import com.kertzware.dto.MemberFormDTO;
 import com.kertzware.model.*;
 import com.kertzware.repository.MemberRepository;
 import jakarta.persistence.EntityNotFoundException;
+import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class MemberService {
@@ -26,13 +28,14 @@ public class MemberService {
     }
 
     /**
-     * Deletes a member using its id
+     * Dismisses (mark it as disabled) a member using its id
      * @param id member's id
      */
-    public void deleteMemberById(Long id){
-        if(!memberRepository.existsById(id))
-            throw new EntityNotFoundException("No se encontró al socio con ID " + id);
-        memberRepository.deleteById(id);
+    @Transactional
+    public void dismissMember(Long id){
+        Member member = memberRepository.findById(id)
+                .orElseThrow( () -> new EntityNotFoundException("No se encontró al socio con ID " + id));
+        member.setIsActive(false);
     }
 
     /**

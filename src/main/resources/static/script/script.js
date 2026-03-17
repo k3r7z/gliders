@@ -24,6 +24,8 @@ let stopTimeInput;
  * Load the main elements, constants and link events once the DOM is loaded
  */
 document.addEventListener("DOMContentLoaded", () => {
+    const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+    const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
     flightForm = document.getElementById("flightForm");
     gliderBtn = document.getElementById("gliderBtn");
     aircraftSelect = document.getElementById("aircraftId");
